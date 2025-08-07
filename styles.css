@@ -5,6 +5,39 @@
     font-family: "Poppins", sans-serif;
 }
 
+.cabecalho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    box-shadow: 100 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  height: 50px;
+}
+
+.botoes-header a {
+  margin-left: 15px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  background-color: #3ab5fe;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.botoes-header a:hover {
+    background: #1c587a;
+}
+
 body {
     padding-top: 20px;
     padding-right: 100px;
@@ -103,4 +136,19 @@ h2 {
     color: #333333;
     font-size: 60px;
     font-weight: bold;
+}
+
+footer {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+    color: #333333;
 }
