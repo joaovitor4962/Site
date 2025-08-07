@@ -5,6 +5,20 @@
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .cabecalho {
     position: fixed;
     top: 0;
@@ -136,6 +150,21 @@ h2 {
     color: #333333;
     font-size: 60px;
     font-weight: bold;
+}
+
+.construction-container {
+  text-align: center;
+  margin-top: 150px;
+}
+
+.gear {
+  margin: 0 auto 60px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 10px solid #ccc;
+  border-top: 10px solid #4c4cff;
+  animation: spin 2s linear infinite;
 }
 
 footer {
