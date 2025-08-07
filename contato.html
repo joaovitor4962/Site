@@ -9,33 +9,312 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <title>It Cloud Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Contato - IT Cloud Solutions</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header class="cabecalho">
-        <div class="logo">
-            <img src="img/logo.png" alt="imagem-logo">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="IT Cloud Solutions" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicos.html">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contato.html">Contato</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="botoes-header">
-            <a href="/index.html">Início</a>
-            <a href="/servicos.html">Serviços</a>
-            <a href="/contato.html">Contato</a>
-        </div>
-    </header>
+    </nav>
 
-    <main class="main-content">
-        <div class="construction-container">
-            <div class="gear"></div>
-            <h1>Página em Construção</h1>
+    <section class="page-header bg-primary text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center pt-5">
+                    <h1 class="display-4 fw-bold mb-3">Entre em Contato</h1>
+                    <p class="lead">Estamos prontos para ajudar sua empresa a crescer</p>
+                </div>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 It Cloud Solutions - Todos os direitos reservados.</p>
+    <section class="contact-section py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="card-title fw-bold mb-4">Envie sua Mensagem</h3>
+                            <form id="contactForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="nome" class="form-label">Nome Completo *</label>
+                                        <input type="text" class="form-control" id="nome" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="empresa" class="form-label">Empresa</label>
+                                        <input type="text" class="form-control" id="empresa">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">E-mail *</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="telefone" class="form-label">Telefone</label>
+                                        <input type="tel" class="form-control" id="telefone">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="servico" class="form-label">Serviço de Interesse</label>
+                                        <select class="form-select" id="servico">
+                                            <option value="">Selecione um serviço</option>
+                                            <option value="infraestrutura">Infraestrutura de TI</option>
+                                            <option value="cloud">Cloud Computing</option>
+                                            <option value="virtualizacao">Virtualização</option>
+                                            <option value="seguranca">Segurança da Informação</option>
+                                            <option value="desenvolvimento">Desenvolvimento Web</option>
+                                            <option value="suporte">Suporte Técnico</option>
+                                            <option value="consultoria">Consultoria</option>
+                                            <option value="outro">Outro</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="mensagem" class="form-label">Mensagem *</label>
+                                        <textarea class="form-control" id="mensagem" rows="5"
+                                            placeholder="Descreva sua necessidade ou dúvida..." required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="aceito" required>
+                                            <label class="form-check-label" for="aceito">
+                                                Aceito receber contato da IT Cloud Solutions *
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary btn-lg px-4">
+                                            <i class="bi bi-send me-2"></i>Enviar Mensagem
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="contact-info">
+                        <h3 class="fw-bold mb-4">Informações de Contato</h3>
+
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <div class="contact-icon me-3">
+                                    <i class="bi bi-geo-alt-fill text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">Endereço</h5>
+                                    <p class="text-muted mb-0">
+                                        Rua das Tecnologias, 123<br>
+                                        Centro - São Paulo/SP<br>
+                                        CEP: 01234-567
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <div class="contact-icon me-3">
+                                    <i class="bi bi-telephone-fill text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">Telefone</h5>
+                                    <p class="text-muted mb-0">
+                                        <a href="tel:+5511999999999" class="text-decoration-none">(11)
+                                            99999-9999</a><br>
+                                        <a href="tel:+551133333333" class="text-decoration-none">(11) 3333-3333</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <div class="contact-icon me-3">
+                                    <i class="bi bi-envelope-fill text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">E-mail</h5>
+                                    <p class="text-muted mb-0">
+                                        <a href="mailto:contato@itcloudsolutions.com.br" class="text-decoration-none">
+                                            contato@itcloudsolutions.com.br
+                                        </a><br>
+                                        <a href="mailto:vendas@itcloudsolutions.com.br" class="text-decoration-none">
+                                            vendas@itcloudsolutions.com.br
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <div class="contact-icon me-3">
+                                    <i class="bi bi-clock-fill text-primary" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-bold mb-1">Horário de Atendimento</h5>
+                                    <p class="text-muted mb-0">
+                                        Segunda a Sexta: 8h às 18h<br>
+                                        Sábado: 8h às 12h<br>
+                                        Suporte 24/7 para clientes
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-media">
+                            <h5 class="fw-bold mb-3">Redes Sociais</h5>
+                            <div class="d-flex gap-3">
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-linkedin"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h3 class="fw-bold">Nossa Localização</h3>
+                    <p class="text-muted">Venha nos visitar ou agende uma reunião</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-placeholder bg-secondary rounded d-flex align-items-center justify-content-center"
+                        style="height: 400px;">
+                        <div class="text-center text-white">
+                            <i class="bi bi-geo-alt-fill" style="font-size: 3rem;"></i>
+                            <h4 class="mt-3">Mapa Interativo</h4>
+                            <p>Integre aqui seu mapa do Google Maps ou similar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h3 class="fw-bold">Perguntas Frequentes</h3>
+                    <p class="text-muted">Tire suas dúvidas mais comuns</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
+                                    Qual o prazo para implementação dos serviços?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    O prazo varia conforme a complexidade do projeto. Projetos simples podem ser
+                                    implementados
+                                    em 1-2 semanas, enquanto projetos mais complexos podem levar de 1-3 meses. Sempre
+                                    fornecemos
+                                    um cronograma detalhado após a análise inicial.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
+                                    Vocês oferecem suporte 24/7?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sim, oferecemos suporte 24/7 para clientes com contratos de manutenção. Para outros
+                                    clientes,
+                                    o atendimento é de segunda a sexta das 8h às 18h, e sábados das 8h às 12h.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
+                                    Como funciona o processo de orçamento?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Após o primeiro contato, agendamos uma reunião para entender suas necessidades.
+                                    Em seguida, fazemos uma análise técnica e apresentamos uma proposta personalizada
+                                    em até 5 dias úteis.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">© 2025 IT Cloud Solutions - Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+    </script>
 </body>
 
 </html>
