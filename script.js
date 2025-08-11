@@ -237,7 +237,7 @@ function showCategoryFiles(category) {
       { name: 'Monitoramento', file: 'monitoramento.py', size: '8.9 KB' },
       { name: 'Deploy Aplicação', file: 'deploy-aplicacao.js', size: '12.3 KB' },
       { name: 'Manutenção BD', file: 'manutencao-bd.sql', size: '4.7 KB' },
-      { name: 'Relatório Sistemas', file: 'relatorio-sistemas.vbs', size: '6.2 KB' }
+      { name: 'Ativadores', file: 'ativar-programas.ps1', size: '6.2 KB' }
     ],
     'drivers': [
       { name: 'Driver Impressora HP', file: 'driver-impressora-hp.exe', size: '89.4 MB' },
@@ -461,3 +461,4 @@ function formatFileSize(bytes) {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
+
