@@ -85,6 +85,7 @@ body {
     transition: transform 0.3s ease;
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 .tech-item:hover {
@@ -337,4 +338,59 @@ html {
         margin: 5px 0;
         display: inline-block;
     }
+}
+
+.download-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.download-card:hover {
+    transform: translateY(-8px);
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.recent-item {
+    transition: transform 0.2s ease;
+}
+
+.recent-item:hover {
+    transform: translateY(-2px);
+}
+
+.download-category {
+    transition: all 0.3s ease;
+}
+
+.download-category[style*="display: none"] {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.toast-container {
+    z-index: 1080;
+}
+
+.admin-card {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+}
+
+.timeline-marker {
+    flex-shrink: 0;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.dashboard-section {
+    min-height: 60vh;
 }
