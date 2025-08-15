@@ -206,7 +206,7 @@ function showCategoryFiles(category) {
     'imagens': [
       { name: 'Logo IT Cloud', file: 'logo-it-cloud.png', size: '245 KB' },
       { name: 'Banner Principal', file: 'banner-principal.png', size: '1.2 MB' },
-      { name: 'Wallpaper Corporativo', file: 'wallpaper-corporativo.jpg', size: '3.4 MB' },
+      { name: 'Wallpaper Corporativo', file: 'wallpaper-corporativo.png', size: '3.4 MB' },
       { name: 'Ícones Sistema', file: 'icones-sistema.zip', size: '890 KB' },
       { name: 'Templates Design', file: 'templates-design.psd', size: '45.6 MB' },
       { name: 'Fotos Equipe', file: 'fotos-equipe.zip', size: '23.1 MB' },
@@ -461,4 +461,5 @@ function formatFileSize(bytes) {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
+
 
