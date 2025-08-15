@@ -205,7 +205,7 @@ function showCategoryFiles(category) {
     ],
     'imagens': [
       { name: 'Logo IT Cloud', file: 'logo-it-cloud.png', size: '245 KB' },
-      { name: 'Banner Principal', file: 'banner-principal.jpg', size: '1.2 MB' },
+      { name: 'Banner Principal', file: 'banner-principal.png', size: '1.2 MB' },
       { name: 'Wallpaper Corporativo', file: 'wallpaper-corporativo.jpg', size: '3.4 MB' },
       { name: 'Ícones Sistema', file: 'icones-sistema.zip', size: '890 KB' },
       { name: 'Templates Design', file: 'templates-design.psd', size: '45.6 MB' },
