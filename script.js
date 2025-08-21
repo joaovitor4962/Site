@@ -23,6 +23,15 @@ const FormValidator = {
                 isValid = !value || phoneRegex.test(value.replace(/\D/g, ''));
                 break;
                 
+            case 'file':
+                if (field.files.length > 0) {
+                    const file = field.files[0];
+                    const maxSize = 5 * 1024 * 1024; // 5MB
+                    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                    isValid = file.size <= maxSize && allowedTypes.includes(file.type);
+                }
+                break;
+                
             default:
                 if (field.hasAttribute('required')) {
                     isValid = value.length >= (field.dataset.minLength || 2);
@@ -31,7 +40,11 @@ const FormValidator = {
         }
         
         if (field.tagName === 'TEXTAREA' && field.hasAttribute('required')) {
-            isValid = value.length >= 10;
+            isValid = value.length >= 20;
+        }
+        
+        if (field.tagName === 'SELECT' && field.hasAttribute('required')) {
+            isValid = value !== '';
         }
         
         if (field.type === 'checkbox' && field.hasAttribute('required')) {
@@ -71,6 +84,21 @@ const FormValidator = {
             
             e.target.value = value;
         });
+    },
+    
+    setupSalaryMask: (salaryInput) => {
+        salaryInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                value = parseInt(value).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
+            }
+            
+            e.target.value = value;
+        });
     }
 };
 
@@ -83,7 +111,8 @@ const CONFIG = {
     EMAILJS: {
         PUBLIC_KEY: "AkmRbbP2sZ2SFfDs-", // Substitua pela sua Public Key
         SERVICE_ID: "service_8qgfce9", // Substitua pelo seu Service ID
-        TEMPLATE_ID: "template_c5uwio5" // Substitua pelo seu Template ID
+        CONTACT_TEMPLATE_ID: "template_c5uwio5", // Template para contato
+        CAREER_TEMPLATE_ID: "template_c0l2yig" // Template para trabalhe conosco
     }
 };
 
@@ -113,6 +142,15 @@ const Utils = {
             clearTimeout(timeoutId);
             timeoutId = setTimeout(() => func.apply(null, args), delay);
         };
+    },
+
+    convertFileToBase64: (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
     }
 };
 
@@ -540,7 +578,7 @@ const EmailManager = {
         }
     },
 
-    validateForm: (formData) => {
+    validateContactForm: (formData) => {
         const errors = [];
         
         if (!formData.from_name || formData.from_name.trim().length < 2) {
@@ -558,6 +596,32 @@ const EmailManager = {
         return errors;
     },
 
+    validateCareerForm: (formData) => {
+        const errors = [];
+        
+        if (!formData.candidate_name || formData.candidate_name.trim().length < 2) {
+            errors.push('Nome deve ter pelo menos 2 caracteres');
+        }
+        
+        if (!formData.candidate_email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.candidate_email)) {
+            errors.push('Email inválido');
+        }
+        
+        if (!formData.candidate_phone || formData.candidate_phone.trim().length < 10) {
+            errors.push('Telefone é obrigatório');
+        }
+        
+        if (!formData.position_interest) {
+            errors.push('Selecione uma vaga de interesse');
+        }
+        
+        if (!formData.cover_letter || formData.cover_letter.trim().length < 20) {
+            errors.push('Carta de apresentação deve ter pelo menos 20 caracteres');
+        }
+        
+        return errors;
+    },
+
     formatPhoneNumber: (phone) => {
         if (!phone) return '';
         const cleaned = phone.replace(/\D/g, '');
@@ -569,19 +633,17 @@ const EmailManager = {
 
     sendContact: async (formData) => {
         if (!EmailManager.isInitialized) {
-            NotificationManager.toast('❌ Serviço de email não inicializado', 'error');
+            NotificationManager.toast('⌐ Serviço de email não inicializado', 'error');
             return { success: false, error: 'EmailJS não inicializado' };
         }
 
-        // Validação dos dados
-        const validationErrors = EmailManager.validateForm(formData);
+        const validationErrors = EmailManager.validateContactForm(formData);
         if (validationErrors.length > 0) {
-            NotificationManager.toast(`❌ ${validationErrors[0]}`, 'error');
+            NotificationManager.toast(`⌐ ${validationErrors[0]}`, 'error');
             return { success: false, error: validationErrors };
         }
 
         try {
-            // Prepara os dados para o template
             const templateParams = {
                 from_name: Utils.sanitizeInput(formData.from_name),
                 from_email: formData.from_email,
@@ -594,21 +656,21 @@ const EmailManager = {
                 timestamp: new Date().toLocaleString('pt-BR')
             };
 
-            console.log('📧 Enviando email...', templateParams);
+            console.log('📧 Enviando email de contato...', templateParams);
 
             const response = await emailjs.send(
                 CONFIG.EMAILJS.SERVICE_ID,
-                CONFIG.EMAILJS.TEMPLATE_ID,
+                CONFIG.EMAILJS.CONTACT_TEMPLATE_ID,
                 templateParams
             );
 
-            console.log('✅ Email enviado com sucesso:', response);
+            console.log('✅ Email de contato enviado com sucesso:', response);
             NotificationManager.toast('✅ Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
             
             return { success: true, response };
 
         } catch (error) {
-            console.error('❌ Erro ao enviar email:', error);
+            console.error('⌐ Erro ao enviar email de contato:', error);
             
             let errorMessage = 'Erro ao enviar mensagem. ';
             if (error.status === 400) {
@@ -621,13 +683,84 @@ const EmailManager = {
                 errorMessage += 'Tente novamente ou entre em contato por telefone.';
             }
             
-            NotificationManager.toast(`❌ ${errorMessage}`, 'error');
+            NotificationManager.toast(`⌐ ${errorMessage}`, 'error');
             return { success: false, error };
         }
     },
 
-    // Função para envio via formulário HTML (compatibilidade)
-    sendForm: async (form) => {
+    sendCareer: async (formData, cvFile = null) => {
+        if (!EmailManager.isInitialized) {
+            NotificationManager.toast('⌐ Serviço de email não inicializado', 'error');
+            return { success: false, error: 'EmailJS não inicializado' };
+        }
+
+        const validationErrors = EmailManager.validateCareerForm(formData);
+        if (validationErrors.length > 0) {
+            NotificationManager.toast(`⌐ ${validationErrors[0]}`, 'error');
+            return { success: false, error: validationErrors };
+        }
+
+        try {
+            let cvBase64 = '';
+            let cvName = '';
+            let cvSize = '';
+
+            if (cvFile) {
+                cvBase64 = await Utils.convertFileToBase64(cvFile);
+                cvName = cvFile.name;
+                cvSize = Utils.formatFileSize(cvFile.size);
+            }
+
+            const templateParams = {
+                candidate_name: Utils.sanitizeInput(formData.candidate_name),
+                candidate_email: formData.candidate_email,
+                candidate_phone: EmailManager.formatPhoneNumber(formData.candidate_phone),
+                position_interest: formData.position_interest,
+                experience_level: formData.experience_level || 'Não informado',
+                salary_expectation: formData.salary_expectation || 'Não informado',
+                skills: Utils.sanitizeInput(formData.skills || 'Não informado'),
+                cover_letter: Utils.sanitizeInput(formData.cover_letter),
+                cv_attachment: cvBase64,
+                cv_name: cvName,
+                cv_size: cvSize,
+                to_email: 'rh@itcloudsolutions.com.br',
+                reply_to: formData.candidate_email,
+                timestamp: new Date().toLocaleString('pt-BR')
+            };
+
+            console.log('📧 Enviando candidatura...', { ...templateParams, cv_attachment: cvBase64 ? '[ARQUIVO ANEXADO]' : '[SEM ANEXO]' });
+
+            const response = await emailjs.send(
+                CONFIG.EMAILJS.SERVICE_ID,
+                CONFIG.EMAILJS.CAREER_TEMPLATE_ID,
+                templateParams
+            );
+
+            console.log('✅ Candidatura enviada com sucesso:', response);
+            NotificationManager.toast('✅ Candidatura enviada com sucesso! Nossa equipe de RH entrará em contato em breve.', 'success');
+            
+            return { success: true, response };
+
+        } catch (error) {
+            console.error('⌐ Erro ao enviar candidatura:', error);
+            
+            let errorMessage = 'Erro ao enviar candidatura. ';
+            if (error.status === 400) {
+                errorMessage += 'Dados inválidos.';
+            } else if (error.status === 403) {
+                errorMessage += 'Serviço não autorizado.';
+            } else if (error.status === 413) {
+                errorMessage += 'Arquivo muito grande (máx. 5MB).';
+            } else {
+                errorMessage += 'Tente novamente ou entre em contato por telefone.';
+            }
+            
+            NotificationManager.toast(`⌐ ${errorMessage}`, 'error');
+            return { success: false, error };
+        }
+    },
+
+    sendContactForm: async (form) => {
         const formData = new FormData(form);
         const data = {
             from_name: formData.get('from_name') || formData.get('nome'),
@@ -642,7 +775,34 @@ const EmailManager = {
         
         if (result.success) {
             form.reset();
-            // Remove classes de validação se existirem
+            const validatedFields = form.querySelectorAll('.is-valid, .is-invalid');
+            validatedFields.forEach(field => {
+                field.classList.remove('is-valid', 'is-invalid');
+            });
+        }
+        
+        return result;
+    },
+
+    sendCareerForm: async (form) => {
+        const formData = new FormData(form);
+        const cvFile = formData.get('cv_file');
+        
+        const data = {
+            candidate_name: formData.get('candidate_name'),
+            candidate_email: formData.get('candidate_email'),
+            candidate_phone: formData.get('candidate_phone'),
+            position_interest: formData.get('position_interest'),
+            experience_level: formData.get('experience_level'),
+            salary_expectation: formData.get('salary_expectation'),
+            skills: formData.get('skills'),
+            cover_letter: formData.get('cover_letter')
+        };
+
+        const result = await EmailManager.sendCareer(data, cvFile?.size > 0 ? cvFile : null);
+        
+        if (result.success) {
+            form.reset();
             const validatedFields = form.querySelectorAll('.is-valid, .is-invalid');
             validatedFields.forEach(field => {
                 field.classList.remove('is-valid', 'is-invalid');
@@ -707,11 +867,15 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             
+            if (!FormValidator.validateForm(this)) {
+                NotificationManager.toast('⚠️ Por favor, corrija os campos destacados', 'warning');
+                return;
+            }
+            
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn ? submitBtn.innerHTML : '';
             
             try {
-                // Mostra loading se o botão existir
                 if (submitBtn) {
                     submitBtn.disabled = true;
                     submitBtn.classList.add('loading');
@@ -723,14 +887,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                // Envia o email usando EmailJS
-                await EmailManager.sendForm(this);
+                await EmailManager.sendContactForm(this);
                 
             } catch (error) {
                 console.error('Erro no envio:', error);
-                NotificationManager.toast('❌ Erro inesperado ao enviar mensagem', 'error');
+                NotificationManager.toast('⌐ Erro inesperado ao enviar mensagem', 'error');
             } finally {
-                // Remove loading se o botão existir
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('loading');
@@ -744,8 +906,68 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Adiciona validação em tempo real
+        // Adiciona validação em tempo real para contato
         const requiredFields = contactForm.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+            field.addEventListener('blur', function() {
+                FormValidator.validateField(this);
+            });
+            
+            field.addEventListener('input', function() {
+                if (this.classList.contains('is-invalid')) {
+                    FormValidator.validateField(this);
+                }
+            });
+        });
+    }
+    
+    // Configura formulário de trabalhe conosco
+    const careerForm = document.getElementById('careerForm');
+    if (careerForm) {
+        careerForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            if (!FormValidator.validateForm(this)) {
+                NotificationManager.toast('⚠️ Por favor, corrija os campos destacados', 'warning');
+                return;
+            }
+            
+            const submitBtn = careerForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.innerHTML : '';
+            
+            try {
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('loading');
+                    if (submitBtn.querySelector('.btn-text')) {
+                        submitBtn.querySelector('.btn-text').style.display = 'none';
+                    }
+                    if (submitBtn.querySelector('.loading-spinner')) {
+                        submitBtn.querySelector('.loading-spinner').style.display = 'inline-block';
+                    }
+                }
+                
+                await EmailManager.sendCareerForm(this);
+                
+            } catch (error) {
+                console.error('Erro no envio da candidatura:', error);
+                NotificationManager.toast('⌐ Erro inesperado ao enviar candidatura', 'error');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('loading');
+                    if (submitBtn.querySelector('.btn-text')) {
+                        submitBtn.querySelector('.btn-text').style.display = '';
+                    }
+                    if (submitBtn.querySelector('.loading-spinner')) {
+                        submitBtn.querySelector('.loading-spinner').style.display = 'none';
+                    }
+                }
+            }
+        });
+        
+        // Adiciona validação em tempo real para trabalhe conosco
+        const requiredFields = careerForm.querySelectorAll('[required]');
         requiredFields.forEach(field => {
             field.addEventListener('blur', function() {
                 FormValidator.validateField(this);
@@ -801,6 +1023,42 @@ document.addEventListener('DOMContentLoaded', function() {
         FormValidator.setupPhoneMask(field);
     });
     
+    // Configura máscara de salário
+    const salaryFields = document.querySelectorAll('input[id*="salary"], input[id*="salario"]');
+    salaryFields.forEach(field => {
+        FormValidator.setupSalaryMask(field);
+    });
+    
+    // Validação de arquivo de currículo
+    const cvFileInput = document.getElementById('cv_file');
+    if (cvFileInput) {
+        cvFileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                const file = this.files[0];
+                const maxSize = 2 * 1024 * 1024; // 2MB
+                const allowedTypes = [
+                    'application/pdf',
+                    'application/msword',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                ];
+                
+                if (file.size > maxSize) {
+                    NotificationManager.toast('⚠️ Arquivo muito grande. Máximo: 2MB', 'warning');
+                    this.value = '';
+                    return;
+                }
+                
+                if (!allowedTypes.includes(file.type)) {
+                    NotificationManager.toast('⚠️ Formato não aceito. Use: PDF, DOC ou DOCX', 'warning');
+                    this.value = '';
+                    return;
+                }
+                
+                NotificationManager.toast(`✅ Arquivo "${file.name}" (${Utils.formatFileSize(file.size)}) adicionado com sucesso!`, 'success');
+            }
+        });
+    }
+    
     // Mostra informações da sessão
     SessionManager.displayInfo();
 });
@@ -808,9 +1066,14 @@ document.addEventListener('DOMContentLoaded', function() {
 // Verificação periódica da sessão
 setInterval(() => {
     if (!SessionManager.isValid()) {
-        NotificationManager.alert('⏰ Sua sessão expirou!\n\nPor favor, faça login novamente.');
-        SessionManager.clear();
-        window.location.href = 'index.html';
+        const restrictedPages = ['pagina1.html', 'pagina2.html'];
+        const currentPage = window.location.pathname;
+        
+        if (restrictedPages.some(page => currentPage.includes(page))) {
+            NotificationManager.alert('⏰ Sua sessão expirou!\n\nPor favor, faça login novamente.');
+            SessionManager.clear();
+            window.location.href = 'index.html';
+        }
     }
 }, CONFIG.CHECK_INTERVAL);
 
