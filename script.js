@@ -823,44 +823,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializa EmailJS
     EmailManager.init();
     
-    // Configura formulário de login
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('username')?.value || '';
-            const password = document.getElementById('password')?.value || '';
-            const loginError = document.getElementById('loginError');
-            
-            const result = AuthSystem.login(username, password);
-            
-            if (result.success) {
-                if (loginError) {
-                    loginError.style.display = 'none';
-                }
-                
-                const modalEl = document.getElementById('loginModal');
-                if (modalEl) {
-                    const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
-                    modal.hide();
-                }
-                
-                NotificationManager.toast(`✅ Login realizado com sucesso! Bem-vindo, ${username}!`, 'success');
-                
-                setTimeout(() => {
-                    window.location.href = result.redirect;
-                }, 1000);
-                
-            } else {
-                if (loginError) {
-                    loginError.style.display = 'block';
-                    loginError.textContent = result.error;
-                }
-            }
-        });
-    }
-    
     // Configura formulário de contato
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -978,18 +940,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     FormValidator.validateField(this);
                 }
             });
-        });
-    }
-    
-    // Configura modal de login
-    const loginModal = document.getElementById('loginModal');
-    if (loginModal) {
-        loginModal.addEventListener('hidden.bs.modal', function() {
-            const loginError = document.getElementById('loginError');
-            const loginForm = document.getElementById('loginForm');
-            
-            if (loginError) loginError.style.display = 'none';
-            if (loginForm) loginForm.reset();
         });
     }
     
