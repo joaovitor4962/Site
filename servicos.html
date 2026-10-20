@@ -13,6 +13,101 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <title>Serviços - IT Cloud Solutions</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Identidade visual 2026: camada visual; formulários, IDs e scripts existentes são preservados. -->
+    <style>
+        :root {
+            --it-navy: #0b1730;
+            --it-blue: #168dcc;
+            --it-cyan: #61c9ff;
+            --it-ink: #18243a;
+            --it-muted: #637187;
+            --it-line: #e4ebf3;
+            --it-soft: #f5f8fc;
+        }
+        html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+        body { color: var(--it-ink); background: #fff; font-family: 'Poppins', sans-serif; }
+        body > .navbar, .navbar.fixed-top { border-bottom: 1px solid rgba(20,40,70,.08); }
+        .navbar { min-height: 76px; }
+        .navbar-brand img { object-fit: contain; }
+        .navbar-nav .nav-link { font-weight: 500; border-radius: 9px; transition: background .2s ease, color .2s ease; }
+        .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover { background: #e8f6ff; color: var(--it-blue) !important; }
+        .hero-section {
+            position: relative; overflow: hidden; padding-top: 80px;
+            background: radial-gradient(circle at 85% 20%, rgba(58,181,254,.14), transparent 28%),
+                        linear-gradient(135deg, #f7faff 0%, #eef5fc 100%);
+        }
+        .hero-section .container { position: relative; z-index: 1; }
+        .hero-content h1 { color: var(--it-navy); letter-spacing: -.04em; line-height: 1.12; }
+        .hero-content .lead { color: #526178; line-height: 1.85; }
+        .hero-image img, .infrastructure-image img { max-height: 470px; object-fit: contain; }
+        .btn { border-radius: 10px; font-weight: 600; transition: transform .2s ease, box-shadow .2s ease; }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-primary { background: var(--it-blue); border-color: var(--it-blue); }
+        .btn-primary:hover { background: #106f9f; border-color: #106f9f; }
+        .text-primary { color: var(--it-blue) !important; }
+        .bg-primary { background-color: var(--it-blue) !important; }
+        .page-header {
+            position: relative; overflow: hidden; padding: 145px 0 72px !important;
+            background: radial-gradient(circle at 82% 15%, rgba(97,201,255,.25), transparent 26%),
+                        linear-gradient(135deg, var(--it-navy), #124d75) !important;
+        }
+        .page-header h1 { letter-spacing: -.04em; }
+        .page-header p { color: #d4e0ef; }
+        .technologies-section, .process-section, .benefits-section { background: var(--it-soft) !important; }
+        .technologies-section h2, .infrastructure-content h2, .services-section h2,
+        .contact-section h2, .benefits-section h3, .application-section h3,
+        .contact-info h3 { color: var(--it-navy); letter-spacing: -.025em; }
+        .tech-item, .services-section .card, .application-section .card,
+        .contact-section .card, .contact-info .alert, .process-section .card {
+            border: 1px solid var(--it-line); border-radius: 16px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(20,45,75,.055) !important;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .tech-item:hover, .services-section .card:hover, .application-section .card:hover {
+            transform: translateY(-4px); box-shadow: 0 18px 38px rgba(20,45,75,.10) !important;
+        }
+        .services-section .card-body { padding: 28px 24px; }
+        .services-section .card-title { color: var(--it-navy); }
+        .service-icon { display: inline-flex; align-items: center; justify-content: center; width: 62px; height: 62px; border-radius: 16px; background: #e7f6ff; }
+        .service-icon i { font-size: 1.8rem !important; }
+        .infrastructure-section { padding: 82px 0; }
+        .infrastructure-content p, .card-text, .text-muted { line-height: 1.8; }
+        .cta-section {
+            position: relative; overflow: hidden;
+            background: radial-gradient(circle at 90% 10%, rgba(97,201,255,.2), transparent 28%),
+                        linear-gradient(135deg, var(--it-navy), #124d75) !important;
+        }
+        .cta-section h2, .cta-section h3 { color: #fff; font-weight: 800; letter-spacing: -.03em; }
+        .cta-section p { color: #d4e0ef; }
+        .alert { border-radius: 12px; }
+        .form-control, .form-select { min-height: 46px; border-color: #d8e2ed; border-radius: 9px; }
+        textarea.form-control { min-height: auto; }
+        .form-control:focus, .form-select:focus { border-color: var(--it-cyan); box-shadow: 0 0 0 .2rem rgba(58,181,254,.16); }
+        .form-label { color: var(--it-navy); font-weight: 600; }
+        .application-section { background: #fff; }
+        .application-section .card-body { padding: clamp(24px, 4vw, 42px) !important; }
+        .benefits-section .rounded-circle { background: #e7f6ff !important; }
+        .benefits-section .rounded-circle i { color: var(--it-blue) !important; }
+        footer { background: #071124 !important; border-top: 1px solid rgba(255,255,255,.08); }
+        footer p { color: #c4d0df; }
+        @media (max-width: 991.98px) {
+            .navbar-nav { padding-top: 12px; padding-bottom: 12px; }
+            .hero-section { padding-top: 90px; }
+            .hero-section .row { padding-top: 2rem !important; padding-bottom: 2rem; }
+            .page-header { padding-top: 125px !important; }
+        }
+        @media (max-width: 575.98px) {
+            .hero-content h1 { font-size: clamp(2rem, 9vw, 2.7rem); }
+            .page-header { padding-bottom: 48px !important; }
+            .services-section .card-body { padding: 23px 20px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition: none !important; animation: none !important; }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -39,7 +134,7 @@
                         <a class="nav-link" href="helpdesk.html">Helpdesk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="trabalhe-conosco.html">Trabalhe Conosco</a>
+                        <a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a>
                     </li>
                 </ul>
             </div>
@@ -263,7 +358,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="mb-0">© 2025 IT Cloud Solutions - Todos os direitos reservados.</p>
+                    <p class="mb-0">© 2026 IT Cloud Solutions - Todos os direitos reservados.</p>
                 </div>
             </div>
         </div>
