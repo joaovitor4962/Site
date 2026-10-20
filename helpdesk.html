@@ -40,8 +40,12 @@
         .kanban-preview { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; }
         .kanban-col { min-height:96px; padding:10px; border-radius:9px; background:rgba(255,255,255,.06); font-size:.7rem; color:#dce8f7; }
         .kanban-task { margin-top:8px; padding:8px 7px; border-radius:6px; background:rgba(255,255,255,.11); }
-        .hd-section { padding:82px 0; }
-        .hd-section-alt { background:#f5f8fc; }
+        .hd-section { position:relative; display:flow-root; clear:both; padding:82px 0; isolation:isolate; }
+        .hd-section-alt { position:relative; z-index:0; background:#f5f8fc; }
+        .hd-section > .container { position:relative; z-index:1; }
+        .hd-section .hd-card, .hd-section .roadmap-card { position:relative; inset:auto; float:none; }
+        .cta-section { position:relative; z-index:1; clear:both; }
+        footer { position:relative; z-index:1; clear:both; }
         .section-kicker { color:var(--hd-blue); font-size:.8rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
         .section-title { margin:10px 0 14px; color:var(--hd-navy); font-weight:800; letter-spacing:-.035em; font-size:clamp(1.8rem,3vw,2.65rem); }
         .section-lead { max-width:760px; color:var(--hd-muted); line-height:1.8; }
