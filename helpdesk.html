@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Informações sobre o desenvolvimento do Helpdesk da IT Cloud Solutions.">
+    <title>Helpdesk em desenvolvimento | IT Cloud Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { min-height: 100vh; display: flex; flex-direction: column; background: #f5f8fb; }
+        main { flex: 1; display: flex; align-items: center; padding: 130px 0 70px; }
+        .status-card { max-width: 850px; margin: 0 auto; padding: clamp(28px, 5vw, 56px); border: 1px solid #e7edf3; border-radius: 20px; background: #fff; box-shadow: 0 16px 45px rgba(20, 50, 80, .09); }
+        .status-icon { width: 82px; height: 82px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(58,181,254,.13); color: #168dcc; font-size: 2.5rem; }
+        .status-label { display: inline-block; padding: 7px 14px; border-radius: 999px; background: #fff3cd; color: #765b00; font-size: .85rem; font-weight: 600; }
+        .admin-message { border-left: 4px solid #3ab5fe; background: #f5faff; border-radius: 8px; padding: 20px 22px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="IT Cloud Solutions" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="servicos.html">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="helpdesk.html" aria-current="page">Helpdesk</a></li>
+                    <li class="nav-item"><a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section class="status-card text-center">
+                <div class="status-icon mb-4" aria-hidden="true"><i class="bi bi-tools"></i></div>
+                <div class="mb-3"><span class="status-label"><i class="bi bi-hourglass-split me-1"></i> Em desenvolvimento</span></div>
+                <h1 class="fw-bold mb-3">Nosso Helpdesk está chegando</h1>
+                <p class="text-secondary fs-5 mb-4">A IT Cloud Solutions está desenvolvendo uma solução para facilitar a abertura e o acompanhamento de chamados e tornar a gestão de suporte de TI mais organizada e eficiente.</p>
+                <div class="admin-message text-start mb-4">
+                    <h2 class="h5 fw-bold mb-2"><i class="bi bi-chat-left-text me-2 text-primary"></i>Mensagem do administrador</h2>
+                    <p class="mb-0">Estamos trabalhando para disponibilizar uma experiência confiável, prática e segura para nossos clientes. Esta página será atualizada quando o sistema estiver disponível. Agradecemos pelo interesse e pela confiança na IT Cloud Solutions.</p>
+                    <p class="mt-3 mb-0 fw-semibold">Administrador — IT Cloud Solutions</p>
+                </div>
+                <a href="contato.html" class="btn btn-primary px-4 py-2"><i class="bi bi-envelope me-2"></i>Entre em contato</a>
+                <a href="index.html" class="btn btn-outline-secondary px-4 py-2 ms-sm-2 mt-2 mt-sm-0">Voltar ao início</a>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">© 2026 IT Cloud Solutions - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
