@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Informações sobre o desenvolvimento do Helpdesk da IT Cloud Solutions.">
-    <title>Helpdesk em desenvolvimento | IT Cloud Solutions</title>
+    <meta name="description" content="Conheça o HelpDesk IT Cloud Solutions: gestão de chamados, inventário, monitoramento, SLA e controle de TI em uma única plataforma web.">
+    <meta name="theme-color" content="#0b1730">
+    <title>HelpDesk IT Cloud Solutions | Gestão de TI Inteligente</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,18 +13,70 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body { min-height: 100vh; display: flex; flex-direction: column; background: #f5f8fb; }
-        main { flex: 1; display: flex; align-items: center; padding: 130px 0 70px; }
-        .status-card { max-width: 850px; margin: 0 auto; padding: clamp(28px, 5vw, 56px); border: 1px solid #e7edf3; border-radius: 20px; background: #fff; box-shadow: 0 16px 45px rgba(20, 50, 80, .09); }
-        .status-icon { width: 82px; height: 82px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(58,181,254,.13); color: #168dcc; font-size: 2.5rem; }
-        .status-label { display: inline-block; padding: 7px 14px; border-radius: 999px; background: #fff3cd; color: #765b00; font-size: .85rem; font-weight: 600; }
-        .admin-message { border-left: 4px solid #3ab5fe; background: #f5faff; border-radius: 8px; padding: 20px 22px; }
+        :root { --hd-navy:#0b1730; --hd-blue:#168dcc; --hd-cyan:#3ab5fe; --hd-muted:#637187; --hd-line:#e4ebf3; }
+        html { scroll-behavior:smooth; scroll-padding-top:90px; }
+        body { font-family:'Poppins',sans-serif; color:#18243a; background:#fff; }
+        .navbar { border-bottom:1px solid rgba(20,40,70,.07); }
+        .hd-hero { position:relative; overflow:hidden; padding:150px 0 90px; color:#fff; background:radial-gradient(circle at 85% 25%,rgba(58,181,254,.23),transparent 28%),linear-gradient(135deg,#0b1730 0%,#102b50 58%,#124d75 100%); }
+        .hd-hero:after { content:""; position:absolute; width:360px; height:360px; right:-120px; bottom:-220px; border:1px solid rgba(255,255,255,.12); border-radius:50%; box-shadow:0 0 0 45px rgba(255,255,255,.025),0 0 0 90px rgba(255,255,255,.02); }
+        .hd-hero .container { position:relative; z-index:1; }
+        .eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 13px; border:1px solid rgba(255,255,255,.22); border-radius:999px; background:rgba(255,255,255,.07); color:#bfeaff; font-size:.8rem; font-weight:600; letter-spacing:.07em; text-transform:uppercase; }
+        .hd-hero h1 { max-width:780px; font-size:clamp(2.35rem,5vw,4.4rem); line-height:1.1; letter-spacing:-.045em; font-weight:800; }
+        .hd-hero h1 span { color:#61c9ff; }
+        .hd-hero .lead { max-width:670px; color:#d4e0ef; line-height:1.8; }
+        .hd-btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:13px 21px; border-radius:10px; font-weight:600; text-decoration:none; transition:transform .2s,background .2s; }
+        .hd-btn:hover { transform:translateY(-2px); }
+        .hd-btn-primary { color:#08213a; background:#61c9ff; border:1px solid #61c9ff; }
+        .hd-btn-primary:hover { color:#08213a; background:#8bd8ff; }
+        .hd-btn-light { color:#fff; border:1px solid rgba(255,255,255,.38); background:rgba(255,255,255,.04); }
+        .hd-btn-light:hover { color:#fff; background:rgba(255,255,255,.12); }
+        .hero-panel { padding:25px; border:1px solid rgba(255,255,255,.18); border-radius:20px; background:rgba(255,255,255,.075); backdrop-filter:blur(8px); box-shadow:0 25px 70px rgba(0,0,0,.16); }
+        .hero-panel .panel-top { display:flex; justify-content:space-between; align-items:center; gap:10px; padding-bottom:18px; border-bottom:1px solid rgba(255,255,255,.14); }
+        .live-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#5ce0a0; margin-right:7px; }
+        .metric-mini { padding:16px; border:1px solid rgba(255,255,255,.12); border-radius:12px; background:rgba(5,20,42,.35); height:100%; }
+        .metric-mini i { color:#61c9ff; font-size:1.25rem; }
+        .metric-mini small { display:block; color:#b8c8dc; }
+        .metric-mini strong { display:block; margin-top:7px; color:#fff; font-size:1rem; }
+        .kanban-preview { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; }
+        .kanban-col { min-height:96px; padding:10px; border-radius:9px; background:rgba(255,255,255,.06); font-size:.7rem; color:#dce8f7; }
+        .kanban-task { margin-top:8px; padding:8px 7px; border-radius:6px; background:rgba(255,255,255,.11); }
+        .hd-section { padding:82px 0; }
+        .hd-section-alt { background:#f5f8fc; }
+        .section-kicker { color:var(--hd-blue); font-size:.8rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
+        .section-title { margin:10px 0 14px; color:var(--hd-navy); font-weight:800; letter-spacing:-.035em; font-size:clamp(1.8rem,3vw,2.65rem); }
+        .section-lead { max-width:760px; color:var(--hd-muted); line-height:1.8; }
+        .hd-card { height:100%; padding:25px; border:1px solid var(--hd-line); border-radius:16px; background:#fff; box-shadow:0 8px 28px rgba(20,45,75,.035); transition:transform .2s,box-shadow .2s; }
+        .hd-card:hover { transform:translateY(-4px); box-shadow:0 16px 35px rgba(20,45,75,.08); }
+        .hd-icon { display:inline-flex; width:48px; height:48px; align-items:center; justify-content:center; border-radius:13px; color:#087eb7; background:#e7f6ff; font-size:1.35rem; }
+        .hd-card h3 { margin:18px 0 9px; color:var(--hd-navy); font-size:1.05rem; font-weight:700; }
+        .hd-card p { margin:0; color:var(--hd-muted); font-size:.92rem; line-height:1.75; }
+        .problem-list { list-style:none; padding:0; margin:25px 0 0; }
+        .problem-list li { display:flex; align-items:flex-start; gap:12px; margin-bottom:18px; color:#46546a; line-height:1.65; }
+        .problem-list i { color:#d85b65; font-size:1.1rem; margin-top:3px; }
+        .solution-band { padding:30px; border-radius:18px; background:linear-gradient(135deg,#0b1730,#124d75); color:white; }
+        .solution-band p { color:#d1deec; line-height:1.8; }
+        .solution-band .hd-icon { color:#62caff; background:rgba(255,255,255,.1); }
+        .feature-list { list-style:none; padding:0; margin:0; }
+        .feature-list li { display:flex; gap:11px; margin-bottom:13px; color:#48566c; line-height:1.6; }
+        .feature-list i { color:#138a66; margin-top:3px; }
+        .tech-chip { display:flex; align-items:center; gap:13px; padding:17px; height:100%; border:1px solid var(--hd-line); border-radius:13px; background:#fff; }
+        .tech-chip i { color:var(--hd-blue); font-size:1.55rem; }
+        .tech-chip strong { display:block; color:var(--hd-navy); font-size:.95rem; }
+        .tech-chip small { color:var(--hd-muted); }
+        .roadmap-card { height:100%; padding:23px; border:1px dashed #c8d5e4; border-radius:15px; background:rgba(255,255,255,.7); }
+        .roadmap-card .hd-icon { color:#64748b; background:#e9eef5; }
+        .roadmap-label { display:inline-block; padding:5px 9px; border-radius:999px; background:#edf1f6; color:#59677a; font-size:.72rem; font-weight:700; }
+        .cta-section { padding:70px 0; color:#fff; background:linear-gradient(135deg,#0b1730,#104c76); }
+        .cta-section p { max-width:680px; color:#d1deec; line-height:1.8; }
+        footer { background:#071124; }
+        @media(max-width:767.98px) { .hd-hero { padding:125px 0 65px; } .hd-section { padding:62px 0; } .hero-panel { margin-top:12px; } }
+        @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { transition:none!important; } }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.html" aria-label="IT Cloud Solutions - Início">
                 <img src="img/logo.png" alt="IT Cloud Solutions" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menu">
@@ -41,27 +94,202 @@
         </div>
     </nav>
 
-    <main>
+    <header class="hd-hero">
         <div class="container">
-            <section class="status-card text-center">
-                <div class="status-icon mb-4" aria-hidden="true"><i class="bi bi-tools"></i></div>
-                <div class="mb-3"><span class="status-label"><i class="bi bi-hourglass-split me-1"></i> Em desenvolvimento</span></div>
-                <h1 class="fw-bold mb-3">Nosso Helpdesk está chegando</h1>
-                <p class="text-secondary fs-5 mb-4">A IT Cloud Solutions está desenvolvendo uma solução para facilitar a abertura e o acompanhamento de chamados e tornar a gestão de suporte de TI mais organizada e eficiente.</p>
-                <div class="admin-message text-start mb-4">
-                    <h2 class="h5 fw-bold mb-2"><i class="bi bi-chat-left-text me-2 text-primary"></i>Mensagem do administrador</h2>
-                    <p class="mb-0">Estamos trabalhando para disponibilizar uma experiência confiável, prática e segura para nossos clientes. Esta página será atualizada quando o sistema estiver disponível. Agradecemos pelo interesse e pela confiança na IT Cloud Solutions.</p>
-                    <p class="mt-3 mb-0 fw-semibold">Administrador — IT Cloud Solutions</p>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <span class="eyebrow mb-4"><i class="bi bi-lightning-charge-fill"></i> HelpDesk IT Cloud Solutions</span>
+                    <h1 class="mb-4">Sua equipe de TI no controle. <span>Seu negócio protegido.</span></h1>
+                    <p class="lead mb-4">Gestão de TI inteligente, segura e escalável. Centralize chamados, acompanhe ativos, monitore serviços e tenha mais visibilidade da operação em uma única plataforma web.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a class="hd-btn hd-btn-primary" href="contato.html"><i class="bi bi-chat-dots"></i> Solicitar uma apresentação</a>
+                        <a class="hd-btn hd-btn-light" href="#funcionalidades"><i class="bi bi-arrow-down-circle"></i> Conhecer funcionalidades</a>
+                    </div>
+                    <div class="d-flex flex-wrap gap-4 mt-4 small" style="color:#d4e0ef">
+                        <span><i class="bi bi-check-circle-fill me-2" style="color:#61c9ff"></i>Acesso via web</span>
+                        <span><i class="bi bi-check-circle-fill me-2" style="color:#61c9ff"></i>Chamados e ativos</span>
+                        <span><i class="bi bi-check-circle-fill me-2" style="color:#61c9ff"></i>Monitoramento</span>
+                    </div>
                 </div>
-                <a href="contato.html" class="btn btn-primary px-4 py-2"><i class="bi bi-envelope me-2"></i>Entre em contato</a>
-                <a href="index.html" class="btn btn-outline-secondary px-4 py-2 ms-sm-2 mt-2 mt-sm-0">Voltar ao início</a>
-            </section>
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <div class="panel-top">
+                            <div><small style="color:#b8c8dc">VISÃO DA OPERAÇÃO</small><div class="fw-semibold mt-1">Central de TI</div></div>
+                            <span class="small" style="color:#b8c8dc"><span class="live-dot"></span>Visão ilustrativa</span>
+                        </div>
+                        <div class="row g-2 mt-2">
+                            <div class="col-6"><div class="metric-mini"><i class="bi bi-ticket-perforated"></i><small>Chamados</small><strong>Organizados por status</strong></div></div>
+                            <div class="col-6"><div class="metric-mini"><i class="bi bi-speedometer2"></i><small>Indicadores</small><strong>TMA, TMR e SLA</strong></div></div>
+                            <div class="col-6"><div class="metric-mini"><i class="bi bi-hdd-network"></i><small>Infraestrutura</small><strong>Ativos monitorados</strong></div></div>
+                            <div class="col-6"><div class="metric-mini"><i class="bi bi-shield-check"></i><small>Governança</small><strong>Perfis e auditoria</strong></div></div>
+                        </div>
+                        <div class="kanban-preview" aria-label="Ilustração de organização visual de chamados">
+                            <div class="kanban-col"><strong>Abertos</strong><div class="kanban-task">Novo chamado</div></div>
+                            <div class="kanban-col"><strong>Em andamento</strong><div class="kanban-task">Em atendimento</div></div>
+                            <div class="kanban-col"><strong>Concluídos</strong><div class="kanban-task">Resolvido</div></div>
+                        </div>
+                        <p class="small mt-3 mb-0" style="color:#b8c8dc">Ilustração conceitual da organização das informações — não representa dados reais de clientes.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    </header>
 
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <p class="mb-0">© 2026 IT Cloud Solutions - Todos os direitos reservados.</p>
+    <section class="hd-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <span class="section-kicker">O desafio</span>
+                    <h2 class="section-title">Chega de gerenciar a TI no improviso.</h2>
+                    <p class="section-lead">Quando as solicitações ficam espalhadas em mensagens, e-mails e planilhas, acompanhar prioridades, responsabilidades e prazos se torna muito mais difícil.</p>
+                    <ul class="problem-list">
+                        <li><i class="bi bi-x-circle-fill"></i><span><strong>Perda de tempo:</strong> chamados dispersos em diferentes canais e controles manuais.</span></li>
+                        <li><i class="bi bi-x-circle-fill"></i><span><strong>Pouca visibilidade:</strong> dificuldade para identificar responsáveis, prioridades e cumprimento de SLA.</span></li>
+                        <li><i class="bi bi-x-circle-fill"></i><span><strong>Atuação reativa:</strong> problemas de infraestrutura podem ser percebidos somente após o impacto.</span></li>
+                        <li><i class="bi bi-x-circle-fill"></i><span><strong>Controle insuficiente:</strong> necessidade de organizar permissões, registros e responsabilidades.</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <div class="solution-band">
+                        <div class="hd-icon mb-3"><i class="bi bi-diagram-3"></i></div>
+                        <h3 class="h3 fw-bold mb-3">Uma central para a sua operação de TI</h3>
+                        <p>O HelpDesk IT Cloud Solutions reúne recursos para organizar o atendimento, acompanhar indicadores e monitorar ativos e serviços. A proposta é dar à equipe mais contexto para priorizar o trabalho e à gestão mais clareza sobre a operação.</p>
+                        <div class="row g-3 mt-2">
+                            <div class="col-sm-6"><div class="d-flex gap-2"><i class="bi bi-kanban fs-5" style="color:#61c9ff"></i><span>Fluxo visual de chamados</span></div></div>
+                            <div class="col-sm-6"><div class="d-flex gap-2"><i class="bi bi-graph-up-arrow fs-5" style="color:#61c9ff"></i><span>Indicadores e relatórios</span></div></div>
+                            <div class="col-sm-6"><div class="d-flex gap-2"><i class="bi bi-hdd-network fs-5" style="color:#61c9ff"></i><span>Inventário e monitoramento</span></div></div>
+                            <div class="col-sm-6"><div class="d-flex gap-2"><i class="bi bi-shield-lock fs-5" style="color:#61c9ff"></i><span>Controle de acesso e auditoria</span></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funcionalidades" class="hd-section hd-section-alt">
+        <div class="container">
+            <div class="text-center mx-auto mb-5">
+                <span class="section-kicker">Funcionalidades disponíveis</span>
+                <h2 class="section-title">Recursos para uma gestão de TI mais organizada</h2>
+                <p class="section-lead mx-auto">O sistema atual reúne ferramentas para acompanhar o atendimento, os ativos e a infraestrutura de TI, além de apoiar a padronização de processos.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-kanban"></i></span><h3>Gestão de chamados</h3><p>Organize solicitações por status em um fluxo visual, com respostas prontas e apoio de uma base de conhecimento para o atendimento recorrente.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-speedometer2"></i></span><h3>Dashboard analítico</h3><p>Acompanhe indicadores operacionais como TMA, TMR e SLA para ter mais visibilidade do desempenho da equipe e dos atendimentos.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-pc-display-horizontal"></i></span><h3>Inventário de ativos</h3><p>Mantenha os ativos de TI organizados e facilite a consulta às informações necessárias para o suporte e a gestão da infraestrutura.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-activity"></i></span><h3>Monitoramento de rede e servidores</h3><p>Monitore conectividade por Ping, HTTP e TCP, além de recursos de servidores Linux e Windows por meio de agente de CPU, memória e disco.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-people"></i></span><h3>Usuários, perfis e grupos</h3><p>Organize usuários, grupos e permissões para estruturar o acesso de acordo com as responsabilidades de cada perfil.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-file-earmark-bar-graph"></i></span><h3>Relatórios e SLA</h3><p>Consulte relatórios, exporte dados em CSV e acompanhe contratos e acordos de nível de serviço.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-envelope-check"></i></span><h3>E-mails e notificações</h3><p>Configure SMTP e modelos de e-mail para apoiar a comunicação operacional do sistema.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-magic"></i></span><h3>Instalação guiada</h3><p>Use o assistente de configuração (Setup Wizard) para orientar as etapas iniciais de instalação e parametrização.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-book"></i></span><h3>Base de conhecimento</h3><p>Centralize orientações e respostas recorrentes para ajudar a padronizar procedimentos e reduzir retrabalho.</p></article></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hd-section">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+                <div class="col-lg-5">
+                    <span class="section-kicker">Facilidade no dia a dia</span>
+                    <h2 class="section-title">Feito para acompanhar a rotina da sua equipe.</h2>
+                    <p class="section-lead">Uma experiência web com recursos de configuração, monitoramento e personalização para apoiar diferentes operações de suporte de TI.</p>
+                    <a href="contato.html" class="hd-btn hd-btn-primary mt-3">Converse com a IT Cloud Solutions <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="col-lg-7">
+                    <ul class="feature-list">
+                        <li><i class="bi bi-check-circle-fill"></i><span><strong>Acesso via web:</strong> utilize o sistema por navegador, conforme a configuração do ambiente.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span><strong>Identidade visual personalizável:</strong> opção white-label para adequar nome e logotipo à empresa, conforme a configuração/licença contratada.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span><strong>Alertas e automação:</strong> recursos de monitoramento podem gerar chamados automaticamente quando condições configuradas forem detectadas.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span><strong>Backup:</strong> possibilidade de realizar backup dos dados e encaminhá-lo ao OneDrive com o fluxo configurado.</span></li>
+                        <li><i class="bi bi-check-circle-fill"></i><span><strong>Setup orientado:</strong> assistente de instalação para simplificar a configuração inicial.</span></li>
+                    </ul>
+                    <div class="alert alert-info mt-4 mb-0"><i class="bi bi-info-circle me-2"></i>Os recursos disponíveis podem variar conforme a edição, a licença e a configuração do ambiente contratado. A implantação e os requisitos serão alinhados durante a apresentação comercial.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hd-section hd-section-alt">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-kicker">Arquitetura e tecnologia</span>
+                <h2 class="section-title">Uma base moderna para a operação</h2>
+                <p class="section-lead mx-auto">A arquitetura informada para o produto combina tecnologias amplamente utilizadas no desenvolvimento web e na implantação de aplicações.</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-sm-6 col-lg-4"><div class="tech-chip"><i class="bi bi-window"></i><div><strong>React + Vite</strong><small>Interface web</small></div></div></div>
+                <div class="col-sm-6 col-lg-4"><div class="tech-chip"><i class="bi bi-palette"></i><div><strong>Tailwind CSS</strong><small>Estilização responsiva</small></div></div></div>
+                <div class="col-sm-6 col-lg-4"><div class="tech-chip"><i class="bi bi-server"></i><div><strong>Node.js + Express</strong><small>Serviços de backend</small></div></div></div>
+                <div class="col-sm-6 col-lg-4"><div class="tech-chip"><i class="bi bi-database"></i><div><strong>PostgreSQL + Prisma</strong><small>Dados e acesso ao banco</small></div></div></div>
+                <div class="col-sm-6 col-lg-4"><div class="tech-chip"><i class="bi bi-boxes"></i><div><strong>Docker + Compose</strong><small>Empacotamento e implantação</small></div></div></div>
+                <div class="col-sm-6 col-lg-4"><div class="tech-chip"><i class="bi bi-shield-lock"></i><div><strong>JWT + RSA + bcrypt</strong><small>Autenticação, licença e hash de senhas</small></div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hd-section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <span class="section-kicker">Segurança e governança</span>
+                    <h2 class="section-title">Controles para apoiar uma operação mais segura</h2>
+                    <p class="section-lead mb-4">O projeto contempla mecanismos de autenticação, licenciamento e controle de acesso. A segurança efetiva também depende da implantação, das configurações e das rotinas operacionais adotadas.</p>
+                    <ul class="feature-list">
+                        <li><i class="bi bi-shield-check"></i><span><strong>Licenciamento criptográfico RSA:</strong> validação de licença conforme a implementação do produto.</span></li>
+                        <li><i class="bi bi-shield-check"></i><span><strong>Autenticação JWT:</strong> tokens de autenticação com expiração.</span></li>
+                        <li><i class="bi bi-shield-check"></i><span><strong>Senhas com bcrypt:</strong> armazenamento por hash de senha, sem necessidade de guardar a senha em texto puro.</span></li>
+                        <li><i class="bi bi-shield-check"></i><span><strong>Perfis e permissões:</strong> organização do acesso de acordo com as funções dos usuários.</span></li>
+                        <li><i class="bi bi-shield-check"></i><span><strong>Registros de auditoria:</strong> trilha de ações para apoiar rastreabilidade e investigação operacional.</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <span class="section-kicker">Desempenho e evolução</span>
+                    <h2 class="section-title">Estruturado para evoluir com a demanda</h2>
+                    <p class="section-lead mb-4">Containers, consultas ao banco e monitoramento de recursos ajudam a organizar a implantação e a operação. A capacidade e a disponibilidade finais dependem do dimensionamento e da configuração da infraestrutura.</p>
+                    <div class="hd-card mb-3"><div class="d-flex gap-3"><span class="hd-icon flex-shrink-0"><i class="bi bi-boxes"></i></span><div><h3 class="mt-1">Implantação organizada</h3><p>Docker e Docker Compose apoiam a padronização do ambiente e facilitam a manutenção da implantação.</p></div></div></div>
+                    <div class="hd-card"><div class="d-flex gap-3"><span class="hd-icon flex-shrink-0"><i class="bi bi-graph-up"></i></span><div><h3 class="mt-1">Visibilidade dos recursos</h3><p>O monitoramento de CPU, memória e disco ajuda a identificar sinais de uso elevado e orientar a análise da infraestrutura.</p></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hd-section hd-section-alt">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-kicker">Roadmap do produto</span>
+                <h2 class="section-title">Evolução contínua planejada</h2>
+                <p class="section-lead mx-auto">Estas ideias fazem parte das possibilidades futuras de evolução e não devem ser entendidas como funcionalidades já disponíveis.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3"><article class="roadmap-card"><span class="hd-icon"><i class="bi bi-stars"></i></span><div class="mt-3 mb-2"><span class="roadmap-label">Planejado</span></div><h3 class="h6 fw-bold">Monitoramento com IA</h3><p class="small text-secondary mb-0">Análise de padrões e detecção de possíveis anomalias no comportamento da infraestrutura.</p></article></div>
+                <div class="col-md-6 col-lg-3"><article class="roadmap-card"><span class="hd-icon"><i class="bi bi-chat-dots"></i></span><div class="mt-3 mb-2"><span class="roadmap-label">Planejado</span></div><h3 class="h6 fw-bold">Chatbot de atendimento</h3><p class="small text-secondary mb-0">Triagem e abertura de chamados por canais como WhatsApp ou Telegram.</p></article></div>
+                <div class="col-md-6 col-lg-3"><article class="roadmap-card"><span class="hd-icon"><i class="bi bi-phone"></i></span><div class="mt-3 mb-2"><span class="roadmap-label">Planejado</span></div><h3 class="h6 fw-bold">Aplicativo mobile</h3><p class="small text-secondary mb-0">Apoio aos técnicos que precisam consultar e atender chamados em campo.</p></article></div>
+                <div class="col-md-6 col-lg-3"><article class="roadmap-card"><span class="hd-icon"><i class="bi bi-plug"></i></span><div class="mt-3 mb-2"><span class="roadmap-label">Planejado</span></div><h3 class="h6 fw-bold">Integrações e previsões</h3><p class="small text-secondary mb-0">Conexões com plataformas existentes e dashboards preditivos para apoiar a prevenção de falhas.</p></article></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="eyebrow mb-3"><i class="bi bi-chat-square-text"></i> Vamos conversar</span>
+                    <h2 class="display-6 fw-bold mb-3">Mais organização para a sua TI começa com uma conversa.</h2>
+                    <p class="mb-0">Fale com a IT Cloud Solutions para conhecer o HelpDesk, esclarecer dúvidas e avaliar como os recursos se encaixam na rotina da sua empresa.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="contato.html" class="hd-btn hd-btn-primary"><i class="bi bi-envelope"></i> Solicitar apresentação</a>
+                    <p class="small mt-3 mb-0" style="color:#b8c8dc">Condições comerciais e escopo a confirmar no contato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-white py-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+            <p class="mb-0">© 2026 IT Cloud Solutions — Todos os direitos reservados.</p>
+            <a class="text-white text-decoration-none" href="index.html"><i class="bi bi-arrow-left me-2"></i>Voltar ao site</a>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
