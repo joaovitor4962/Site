@@ -69,11 +69,17 @@
         .tech-chip small { color:var(--hd-muted); }
         .roadmap-card { height:100%; padding:23px; border:1px dashed #c8d5e4; border-radius:15px; background:rgba(255,255,255,.7); }
         .roadmap-card .hd-icon { color:#64748b; background:#e9eef5; }
+        .hd-gallery { display:flex; gap:20px; overflow-x:auto; padding:8px 2px 20px; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color:#9bb8ce #eaf0f6; }
+        .gallery-slide { flex:0 0 min(76%, 620px); min-width:0; margin:0; padding:12px; border:1px solid var(--hd-line); border-radius:16px; background:#fff; box-shadow:0 10px 30px rgba(20,45,75,.07); scroll-snap-align:start; }
+        .gallery-slide img { display:block; width:100%; height:350px; object-fit:contain; background:#f2f5f9; border-radius:10px; }
+        .gallery-slide figcaption { padding:12px 4px 2px; color:var(--hd-navy); font-weight:700; font-size:.92rem; }
+        .gallery-control { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border:1px solid #d5e0ec; border-radius:12px; background:#fff; color:var(--hd-navy); font-size:1.1rem; }
+        .gallery-control:hover { background:#e7f6ff; border-color:#9edcff; }
         .roadmap-label { display:inline-block; padding:5px 9px; border-radius:999px; background:#edf1f6; color:#59677a; font-size:.72rem; font-weight:700; }
         .cta-section { padding:70px 0; color:#fff; background:linear-gradient(135deg,#0b1730,#104c76); }
         .cta-section p { max-width:680px; color:#d1deec; line-height:1.8; }
         footer { background:#071124; }
-        @media(max-width:767.98px) { .hd-hero { padding:125px 0 65px; } .hd-section { padding:62px 0; } .hero-panel { margin-top:12px; } }
+        @media(max-width:767.98px) { .hd-hero { padding:125px 0 65px; } .hd-section { padding:62px 0; } .hero-panel { margin-top:12px; } .gallery-slide { flex-basis:88%; } .gallery-slide img { height:250px; } }
         @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { transition:none!important; } }
     </style>
 </head>
@@ -173,21 +179,63 @@
     <section id="funcionalidades" class="hd-section hd-section-alt">
         <div class="container">
             <div class="text-center mx-auto mb-5">
-                <span class="section-kicker">Funcionalidades disponíveis</span>
-                <h2 class="section-title">Recursos para uma gestão de TI mais organizada</h2>
-                <p class="section-lead mx-auto">O sistema atual reúne ferramentas para acompanhar o atendimento, os ativos e a infraestrutura de TI, além de apoiar a padronização de processos.</p>
+                <span class="section-kicker">Funcionalidades da plataforma</span>
+                <h2 class="section-title">Uma visão completa da operação de TI</h2>
+                <p class="section-lead mx-auto">Do registro do chamado à auditoria, o HelpDesk reúne ferramentas para organizar o atendimento, acompanhar níveis de serviço e dar mais visibilidade à infraestrutura.</p>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-kanban"></i></span><h3>Gestão de chamados</h3><p>Organize solicitações por status em um fluxo visual, com respostas prontas e apoio de uma base de conhecimento para o atendimento recorrente.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-speedometer2"></i></span><h3>Dashboard analítico</h3><p>Acompanhe indicadores operacionais como TMA, TMR e SLA para ter mais visibilidade do desempenho da equipe e dos atendimentos.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-pc-display-horizontal"></i></span><h3>Inventário de ativos</h3><p>Mantenha os ativos de TI organizados e facilite a consulta às informações necessárias para o suporte e a gestão da infraestrutura.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-activity"></i></span><h3>Monitoramento de rede e servidores</h3><p>Monitore conectividade por Ping, HTTP e TCP, além de recursos de servidores Linux e Windows por meio de agente de CPU, memória e disco.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-people"></i></span><h3>Usuários, perfis e grupos</h3><p>Organize usuários, grupos e permissões para estruturar o acesso de acordo com as responsabilidades de cada perfil.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-file-earmark-bar-graph"></i></span><h3>Relatórios e SLA</h3><p>Consulte relatórios, exporte dados em CSV e acompanhe contratos e acordos de nível de serviço.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-envelope-check"></i></span><h3>E-mails e notificações</h3><p>Configure SMTP e modelos de e-mail para apoiar a comunicação operacional do sistema.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-magic"></i></span><h3>Instalação guiada</h3><p>Use o assistente de configuração (Setup Wizard) para orientar as etapas iniciais de instalação e parametrização.</p></article></div>
-                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-book"></i></span><h3>Base de conhecimento</h3><p>Centralize orientações e respostas recorrentes para ajudar a padronizar procedimentos e reduzir retrabalho.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-speedometer2"></i></span><h3>Dashboard operacional</h3><p>Cards de chamados totais, abertos, em atendimento e resolvidos; gráficos por status e prioridade; TMR, TMA, cumprimento de SLA, chamados recentes, atividade recente e notificações com atualização automática a cada 30 segundos.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-kanban"></i></span><h3>Chamados em Kanban</h3><p>Visualize Novos Chamados, Em Andamento, Pendentes e Resolvidos. Crie chamados com título, descrição, prioridade e contrato; atualize status, atribua técnicos conforme o perfil e registre a solução. Respostas prontas agilizam o preenchimento.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-book-half"></i></span><h3>Conhecimento e macros</h3><p>Crie, edite e exclua artigos da base de conhecimento e respostas prontas. Centralize tutoriais e procedimentos e padronize mensagens usadas frequentemente pela equipe.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-pc-display-horizontal"></i></span><h3>Inventário de TI</h3><p>Cadastre hardware, software e servidores; registre endereço IP, número de patrimônio e status para manter os ativos organizados e facilitar a consulta técnica.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-stopwatch"></i></span><h3>SLA por prioridade</h3><p>Defina regras de tempo de resposta e resolução conforme a prioridade. Exemplo configurável: prioridade crítica com resposta em 1 hora e resolução em 4 horas.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-people"></i></span><h3>Usuários, perfis e grupos</h3><p>Crie, edite, exclua usuários e redefina senhas. Vincule perfis e grupos; configure permissões granulares para controlar menus e telas acessíveis por cada função.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-envelope-check"></i></span><h3>SMTP e notificações</h3><p>Configure provedores SMTP como iCloud, Gmail, Outlook ou Brevo. Teste a conexão e o envio antes de concluir a configuração; notificações podem ser disparadas na abertura, atualização e resolução dos chamados.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-file-earmark-spreadsheet"></i></span><h3>Relatórios e exportação</h3><p>Filtre chamados por data, período e status; consulte datas de abertura e resolução e tempo de resolução. Selecione colunas e exporte os dados em CSV para análise em planilhas.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-journal-check"></i></span><h3>Auditoria de ações</h3><p>Consulte registros de criação, edição e exclusão, com filtros por data, tipo de ação e usuário para apoiar a rastreabilidade administrativa.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-router"></i></span><h3>Monitoramento de rede</h3><p>Cadastre alvos Ping, HTTP e TCP e execute verificações manuais ou automáticas a cada minuto. Quando uma condição de indisponibilidade é detectada, o sistema pode abrir um chamado automaticamente.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-hdd-network"></i></span><h3>Métricas de servidores</h3><p>Com a instalação do agente no servidor monitorado, acompanhe métricas de CPU, memória RAM e disco e visualize os indicadores no dashboard.</p></article></div>
+                <div class="col-md-6 col-lg-4"><article class="hd-card"><span class="hd-icon"><i class="bi bi-file-earmark-lock"></i></span><h3>Contratos e licenciamento</h3><p>Cadastre contratos, vincule chamados e organize limites de atendimento. O licenciamento utiliza validação criptográfica RSA, prazo de validade e ativação pela tela de Setup; o arquivo de licença permanece no servidor conforme a implantação.</p></article></div>
             </div>
+            <div class="alert alert-info mt-4 mb-0"><i class="bi bi-info-circle me-2"></i>Os exemplos de SLA e os recursos de monitoramento dependem das regras configuradas e da implantação contratada. O agente de servidores precisa ser instalado no ambiente que será monitorado.</div>
+        </div>
+    </section>
+
+    <section id="galeria" class="hd-section">
+        <div class="container">
+            <div class="row align-items-end g-3 mb-4">
+                <div class="col-lg-8">
+                    <span class="section-kicker">Conheça a interface</span>
+                    <h2 class="section-title">Veja o HelpDesk em funcionamento</h2>
+                    <p class="section-lead mb-0">Uma prévia das telas do sistema: dashboard, chamados, inventário, monitoramento, relatórios e configurações. Use as setas ou navegue pela faixa de imagens.</p>
+                </div>
+                <div class="col-lg-4 d-flex justify-content-lg-end gap-2">
+                    <button class="gallery-control" type="button" id="galleryPrev" aria-label="Ver telas anteriores"><i class="bi bi-arrow-left"></i></button>
+                    <button class="gallery-control" type="button" id="galleryNext" aria-label="Ver próximas telas"><i class="bi bi-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="hd-gallery" id="helpdeskGallery" tabindex="0" aria-label="Galeria horizontal de telas do HelpDesk">
+                <figure class="gallery-slide"><img src="IMG/01-dashboard.png" alt="Dashboard principal do HelpDesk" loading="lazy"><figcaption>01 · Dashboard</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/02-chamados-kanban.png" alt="Quadro Kanban de chamados" loading="lazy"><figcaption>02 · Chamados Kanban</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/03-novo-chamado.png" alt="Formulário de criação de chamado" loading="lazy"><figcaption>03 · Novo chamado</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/04-detalhes-chamado.png" alt="Detalhes e atendimento de chamado" loading="lazy"><figcaption>04 · Atendimento</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/05-base-conhecimento.png" alt="Base de conhecimento do sistema" loading="lazy"><figcaption>05 · Base de conhecimento</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/06-respostas-prontas.png" alt="Gerenciamento de respostas prontas" loading="lazy"><figcaption>06 · Respostas prontas</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/07-inventario.png" alt="Inventário de ativos de TI" loading="lazy"><figcaption>07 · Inventário</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/08-configuracao-sla.png" alt="Configuração de regras de SLA" loading="lazy"><figcaption>08 · Configuração de SLA</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/09-usuarios.png" alt="Gestão de usuários" loading="lazy"><figcaption>09 · Usuários</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/10-perfis-acesso.png" alt="Perfis e permissões de acesso" loading="lazy"><figcaption>10 · Perfis de acesso</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/11-grupos.png" alt="Organização de usuários em grupos" loading="lazy"><figcaption>11 · Grupos</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/12-configuracao-smtp.png" alt="Configuração de e-mail SMTP" loading="lazy"><figcaption>12 · Configuração SMTP</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/13-relatorios.png" alt="Relatórios de chamados" loading="lazy"><figcaption>13 · Relatórios</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/14-auditoria.png" alt="Registros de auditoria do sistema" loading="lazy"><figcaption>14 · Auditoria</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/15-monitoramento-rede.png" alt="Configuração e status do monitoramento de rede" loading="lazy"><figcaption>15 · Monitoramento de rede</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/16-monitoramento-servidores.png" alt="Métricas de monitoramento de servidores" loading="lazy"><figcaption>16 · Monitoramento de servidores</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/17-contratos.png" alt="Gestão de contratos de atendimento" loading="lazy"><figcaption>17 · Contratos</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/18-licenciamento-setup.png" alt="Tela de setup e ativação da licença" loading="lazy"><figcaption>18 · Licenciamento e Setup</figcaption></figure>
+                <figure class="gallery-slide"><img src="IMG/19-backup-configuracoes.png" alt="Configurações de backup e integração com OneDrive" loading="lazy"><figcaption>19 · Backup e configurações</figcaption></figure>
+            </div>
+            <p class="small text-secondary mt-3 mb-0"><i class="bi bi-info-circle me-1"></i>As imagens precisam estar na pasta <code>IMG</code> com os nomes indicados. Se algum print mostrar dados pessoais, e-mails ou endereços de clientes, oculte essas informações antes de publicar.</p>
         </div>
     </section>
 
@@ -274,6 +322,35 @@
         </div>
     </section>
 
+    <section id="planos" class="hd-section hd-section-alt">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-kicker">Planos e contratação</span>
+                <h2 class="section-title">Escolha o modelo adequado à sua operação</h2>
+                <p class="section-lead mx-auto">Converse com a IT Cloud Solutions para avaliar a infraestrutura, o escopo e o formato de contratação mais adequado à sua empresa.</p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-5">
+                    <article class="hd-card">
+                        <span class="hd-icon"><i class="bi bi-cloud-check"></i></span>
+                        <h3>SaaS gerenciado</h3>
+                        <p>Hospedagem na AWS, rotina de backup e suporte conforme as condições do plano contratado. Modelo com mensalidade, pensado para empresas que preferem não administrar diretamente a infraestrutura da aplicação.</p>
+                        <a href="contato.html?servico=Apresenta%C3%A7%C3%A3o%20comercial" class="hd-btn hd-btn-primary mt-4">Solicitar proposta <i class="bi bi-arrow-right"></i></a>
+                    </article>
+                </div>
+                <div class="col-lg-5">
+                    <article class="hd-card">
+                        <span class="hd-icon"><i class="bi bi-building-gear"></i></span>
+                        <h3>On-Premise — instalação no cliente</h3>
+                        <p>Implantação no ambiente da própria empresa, com servidor fornecido pelo cliente e possibilidade de suporte mensal conforme o escopo acordado.</p>
+                        <a href="contato.html?servico=Apresenta%C3%A7%C3%A3o%20comercial" class="hd-btn hd-btn-primary mt-4">Solicitar proposta <i class="bi bi-arrow-right"></i></a>
+                    </article>
+                </div>
+            </div>
+            <p class="small text-secondary text-center mt-4 mb-0">Valores, limites, requisitos de infraestrutura, backup, suporte e condições de licenciamento são definidos na proposta comercial.</p>
+        </div>
+    </section>
+
     <section class="cta-section">
         <div class="container">
             <div class="row align-items-center g-4">
@@ -296,6 +373,46 @@
             <a class="text-white text-decoration-none" href="index.html"><i class="bi bi-arrow-left me-2"></i>Voltar ao site</a>
         </div>
     </footer>
+    <script>
+        (function () {
+            const gallery = document.getElementById('helpdeskGallery');
+            const previous = document.getElementById('galleryPrev');
+            const next = document.getElementById('galleryNext');
+            if (!gallery || !previous || !next) return;
+            const step = () => {
+                const slide = gallery.querySelector('.gallery-slide');
+                return slide ? slide.getBoundingClientRect().width + 20 : gallery.clientWidth * 0.8;
+            };
+            previous.addEventListener('click', () => gallery.scrollBy({ left: -step(), behavior: 'smooth' }));
+            next.addEventListener('click', () => {
+                if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 5) {
+                    gallery.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    gallery.scrollBy({ left: step(), behavior: 'smooth' });
+                }
+            });
+            let timer = null;
+            const stop = () => { if (timer) window.clearInterval(timer); timer = null; };
+            const start = () => {
+                stop();
+                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    timer = window.setInterval(() => {
+                        if (gallery.matches(':hover') || gallery.contains(document.activeElement)) return;
+                        if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 5) {
+                            gallery.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            gallery.scrollBy({ left: step(), behavior: 'smooth' });
+                        }
+                    }, 5000);
+                }
+            };
+            gallery.addEventListener('mouseenter', stop);
+            gallery.addEventListener('mouseleave', start);
+            gallery.addEventListener('focusin', stop);
+            gallery.addEventListener('focusout', start);
+            start();
+        })();
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
