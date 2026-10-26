@@ -1,0 +1,19 @@
+# robots.txt - IT Cloud Solutions
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://itcloudsolutions.com.br/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.pdf$
+
+# Crawl-delay for polite bots
+Crawl-delay: 10
+
+# Host
+Host: https://itcloudsolutions.com.br

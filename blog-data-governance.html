@@ -1,0 +1,64 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Catálogo de dados, lineage e quality: implementando DataHub + Great Expectations. Metadados ativos, ownership, PII detection, testes de qualidade no pipeline, alertas de freshness. Como escalar governança sem burocracia."><title>Catálogo de dados, lineage e quality: DataHub + Great Expectations | IT Cloud Solutions</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Catálogo de dados, lineage e quality: implementando DataHub + Great Expectations","description":"Metadados ativos, ownership, PII detection, testes de qualidade no pipeline, alertas de freshness. Como escalar governança sem burocracia.","image":"https://itcloudsolutions.com.br/img/blog/data-governance.jpg","datePublished":"2026-09-29","dateModified":"2026-09-29","author":{"@type":"Organization","name":"IT Cloud Solutions","url":"https://itcloudsolutions.com.br"},"publisher":{"@type":"Organization","name":"IT Cloud Solutions","logo":{"@type":"ImageObject","url":"https://itcloudsolutions.com.br/img/logo.png"}},"articleSection":"Governança","keywords":["Data Governance","DataHub","Great Expectations","Data Catalog","Lineage","Data Quality","PII Detection","Freshness","Ownership"]}</script></head><body>
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="index.html">Início</a></li><li><a class="nav-link" href="cloud-providers.html">Cloud Providers</a></li><li><a class="nav-link" href="solucoes.html">Soluções</a></li><li><a class="nav-link" href="email-hosting.html">Email & Hosting</a></li><li><a class="nav-link" href="cases.html">Cases</a></li><li><a class="nav-link active" href="blog.html">Blog</a></li><li><a class="nav-link" href="contato.html">Contato</a></li><li><a class="nav-link" href="helpdesk.html">Helpdesk</a></li><li><a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a></li></ul></div></div></nav>
+<main>
+<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="index.html">Início</a></li><li class="breadcrumb-item"><a href="blog.html">Blog</a></li><li class="breadcrumb-item"><a href="blog.html#data">Data, IA & Analytics</a></li><li class="breadcrumb-item active" aria-current="page">Governança de Dados</li></ol></nav><span class="eyebrow text-secondary">Data, IA & Analytics · Governança</span><h1 class="mt-3">Catálogo de dados, lineage e quality: implementando DataHub + Great Expectations</h1><p class="mt-3 section-lead">Metadados ativos, ownership, PII detection, testes de qualidade no pipeline, alertas de freshness. Como escalar governança sem burocracia.</p><div class="d-flex flex-wrap gap-3 mt-3 text-muted small"><span><i class="bi bi-clock me-1"></i>9 min de leitura</span><span><i class="bi bi-calendar me-1"></i>29/09/2026</span><span><i class="bi bi-person me-1"></i>IT Cloud Solutions</span></div></div></header>
+
+<article class="section"><div class="container"><div class="row g-5"><div class="col-lg-8">
+<div class="ratio ratio-16x9 mb-4 rounded-3 overflow-hidden"><img src="img/blog/data-governance.jpg" alt="DataHub + Great Expectations" class="img-fluid object-fit-cover" style="object-fit:cover;"></div>
+
+<h2 class="section-title">Por que Governança Falha</h2>
+<p class="section-lead">Planilhas de dicionário de dados desatualizadas, ownership vago ("é do time de dados"), lineage manual, quality reativa (descobre no dashboard). <strong>Governança eficaz é automatizada, embutida no pipeline, com dono claro.</strong></p>
+
+<h2 class="section-title mt-5">Stack: DataHub (Catálogo + Lineage) + Great Expectations (Quality)</h2>
+<div class="row g-3 mb-4">
+<div class="col-md-6"><div class="modern-card h-100 border-primary"><div class="modern-icon"><i class="bi bi-diagram-3 text-primary"></i></div><h5>DataHub (Acryl / LinkedIn)</h5><p class="text-muted small">Catálogo unificado, lineage coluna-a-coluna (SQL parser + dbt + Airflow), ownership (Slack, email, team), tags/glossário, PII detection (regex + ML), search & discovery, GraphQL/REST API, ingestion via CLI/Airflow/Kafka.</p></div></div>
+<div class="col-md-6"><div class="modern-card h-100 border-success"><div class="modern-icon"><i class="bi bi-check2-square text-success"></i></div><h5>Great Expectations (GX)</h5><p class="text-muted small">Expectativas declarativas (Python/YAML): uniqueness, completeness, validity, distribution, custom. Validation em runtime (Airflow/dbt/CI), Data Docs (HTML), Checkpoints, Profiler, integração DataHub (emite resultados como metadata).</p></div></div>
+</div>
+
+<h2 class="section-title mt-5">Arquitetura de Ingestão de Metadados</h2>
+<pre class="bg-dark text-light p-3 rounded-3"><code>┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
+│  Sources    │──▶│  Ingestion  │──▶│  DataHub    │◀──│  Great      │
+│  (DB, DW,   │   │  (Airflow   │   │  (Metadata  │   │  Expectations
+│   BI, Files)│   │   / Kafka   │   │   Graph)    │   │  (Quality)  │
+└─────────────┘   └─────────────┘   └──────┬──────┘   └──────┬──────┘
+                                           │                 │
+                                    ┌──────┴──────┐   ┌─────┴─────┐
+                                    ▼             ▼   ▼           ▼
+                              ┌──────────┐ ┌──────────┐ ┌──────────────┐
+                              │ Lineage  │ │Ownership │ │ Quality Scores│
+                              │(col-level)│ │(teams,   │ │(freshness,   │
+                              │          │ │ contacts)│ │ validity,    │
+                              └──────────┘ └──────────┘ │ distribution)│
+                                                       └──────────────┘</code></pre>
+
+<h2 class="section-title mt-5">Implementação Passo a Passo</h2>
+<ol class="check-list">
+<li><i class="bi bi-check-circle-fill"></i> <strong>Deploy DataHub:</strong> Docker Compose (dev) / Kubernetes (prod) — MySQL + Elasticsearch + Kafka + MAE (Metadata Audit Event)</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Ingestion Recipes:</strong> Snowflake/BigQuery/Redshift (profiling on), dbt (manifest.json + catalog.json), Airflow (OpenLineage), Power BI/Looker (API), Kafka (schema registry)</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Ownership Mapping:</strong> Glossary terms → Domain → Owner (team + Slack channel). Auto-assign via regex no schema/table name</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>PII Detection:</strong> Regex patterns (CPF, CNPJ, email, cartão, telefone) + ML classifier (Presidio) → tag `PII:true` + alerta no Slack</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Great Expectations Suite:</strong> Por domínio (vendas, financeiro, cliente). Expectativas: `expect_column_values_to_not_be_null`, `expect_column_values_to_be_unique`, `expect_column_values_to_be_between`, `expect_table_row_count_to_be_between`, `expect_column_kl_divergence_to_be_less_than` (drift)</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Checkpoints no Pipeline:</strong> dbt `on-run-end` → GX validation → se falha: block deploy + alerta PagerDuty/Slack</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Data Docs + DataHub Sync:</strong> Resultados do GX → DataHub (aspect `DataQuality`, `Profile`, `Freshness`)</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Alertas de Freshness:</strong> SLA por dataset (ex: `fct_vendas` fresh < 2h). DataHub + Monte Carlo / Elementary monitora + alerta</li>
+</ol>
+
+<h2 class="section-title mt-5">Métricas de Sucesso da Governança</h2>
+<table class="table table-sm table-hover"><thead><tr><th>Métrica</th><th>Target</th><th>Fonte</th></tr></thead><tbody><tr><td>% tabelas com owner definido</td><td>100%</td><td>DataHub</td></tr><tr><td>% tabelas com lineage completo</td><td>> 90%</td><td>DataHub</td></tr><tr><td>% colunas PII tagueadas</td><td>100%</td><td>DataHub (PII detection)</td></tr><tr><td>Testes GX passando no deploy</td><td>> 98%</td><td>GX Checkpoints</td></tr><tr><td>Freshness SLA compliance</td><td>> 99%</td><td>Monte Carlo / DataHub</td></tr><tr><td>Tempo para responder "de onde vem esse dado?"</td><td>< 30 seg</td><td>DataHub Search</td></tr></tbody></table>
+
+<div class="alert alert-info mt-4"><i class="bi bi-lightbulb me-2"></i><strong>Dica:</strong> Comece pelo <strong>domínio de maior dor</strong> (ex: faturamento). Entregue lineage + owner + 5 testes GX em 2 semanas. Mostre valor, expanda. Não tente catalogar tudo de uma vez.</div>
+
+<hr class="my-5">
+<div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-secondary">Governança</span><span class="badge text-bg-light text-dark">DataHub</span><span class="badge text-bg-light text-dark">Great Expectations</span><span class="badge text-bg-light text-dark">Data Catalog</span><span class="badge text-bg-light text-dark">Lineage</span><span class="badge text-bg-light text-dark">Data Quality</span><span class="badge text-bg-light text-dark">PII</span><span class="badge text-bg-light text-dark">Freshness</span></div>
+<div class="d-flex gap-3"><a href="blog.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Voltar ao Blog</a><a href="contato.html?servico=DataGov" class="btn btn-secondary"><i class="bi bi-envelope me-2"></i>Implementar governança de dados</a></div>
+</div>
+
+<aside class="col-lg-4"><div class="modern-card p-4 sticky-top" style="top: 100px;"><h4 class="mb-3">Autor</h4><div class="d-flex align-items-center gap-3 mb-3"><div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width:56px;height:56px"><i class="bi bi-building text-white fs-3"></i></div><div><strong>IT Cloud Solutions</strong><br><small class="text-muted">Especialistas Data Governance</small></div></div>
+<hr>
+<h5 class="mb-3">Artigos Relacionados</h5><ul class="list-unstyled"><li class="mb-2"><a href="blog-modern-data-stack.html" class="text-decoration-none">Modern Data Stack</a></li><li class="mb-2"><a href="blog-genai-rag.html" class="text-decoration-none">RAG em produção</a></li><li class="mb-2"><a href="blog-streaming-kafka.html" class="text-decoration-none">Streaming & Real-time</a></li><li class="mb-2"><a href="case-data-lake.html" class="text-decoration-none">Case: Modern Data Platform</a></li></ul>
+<hr>
+<div class="d-grid gap-2"><a href="contato.html?servico=DataGov" class="btn btn-secondary"><i class="bi bi-envelope me-2"></i>Falar com Especialista Data Governance</a><a href="solucoes.html" class="btn btn-outline-secondary"><i class="bi bi-graph-up-arrow me-2"></i>Ver Data & Analytics</a></div></div></aside></div></div></article>
+
+<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Cloud sem surpresa na fatura.</h2><p class="section-lead mx-auto mt-3">Governança, FinOps, backup, monitoramento e segurança para manter seu ambiente alinhado ao negócio.</p><a href="contato.html" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com Especialista</a></div></section>
+</main>
+<footer class="site-footer"><div class="container d-flex justify-content-between flex-wrap gap-3"><span>© 2026 IT Cloud Solutions.</span><a href="contato.html">Contato</a></div></footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="script.js"></script></body></html>

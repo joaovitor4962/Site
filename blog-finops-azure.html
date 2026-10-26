@@ -1,0 +1,57 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="FinOps na prática: como reduzimos 32% da fatura cloud de um cliente enterprise. Tagging obrigatório, rightsizing automatizado, Savings Plans, compra de RIs e showback por squad. O passo a passo que aplicamos em 90 dias."><title>FinOps na prática: redução de 32% no custo cloud | IT Cloud Solutions</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"FinOps na prática: como reduzimos 32% da fatura cloud de um cliente enterprise","description":"Tagging obrigatório, rightsizing automatizado, Savings Plans, compra de RIs e showback por squad. O passo a passo que aplicamos em 90 dias.","image":"https://itcloudsolutions.com.br/img/blog/cloud-finops.jpg","datePublished":"2026-10-15","dateModified":"2026-10-15","author":{"@type":"Organization","name":"IT Cloud Solutions","url":"https://itcloudsolutions.com.br"},"publisher":{"@type":"Organization","name":"IT Cloud Solutions","logo":{"@type":"ImageObject","url":"https://itcloudsolutions.com.br/img/logo.png"}},"articleSection":"FinOps","keywords":["FinOps","Azure","AWS","GCP","Savings Plans","Reserved Instances","Rightsizing","Tagging","Showback","Otimização de Custos"]}</script></head><body>
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="index.html">Início</a></li><li><a class="nav-link" href="cloud-providers.html">Cloud Providers</a></li><li><a class="nav-link" href="solucoes.html">Soluções</a></li><li><a class="nav-link" href="email-hosting.html">Email & Hosting</a></li><li><a class="nav-link" href="cases.html">Cases</a></li><li><a class="nav-link active" href="blog.html">Blog</a></li><li><a class="nav-link" href="contato.html">Contato</a></li><li><a class="nav-link" href="helpdesk.html">Helpdesk</a></li><li><a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a></li></ul></div></div></nav>
+<main>
+<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="index.html">Início</a></li><li class="breadcrumb-item"><a href="blog.html">Blog</a></li><li class="breadcrumb-item"><a href="blog.html#cloud">Cloud & Multicloud</a></li><li class="breadcrumb-item active" aria-current="page">FinOps na prática</li></ol></nav><span class="eyebrow text-info">Cloud & Multicloud · FinOps</span><h1 class="mt-3">FinOps na prática: como reduzimos 32% da fatura cloud de um cliente enterprise</h1><p class="mt-3 section-lead">Tagging obrigatório, rightsizing automatizado, Savings Plans, compra de RIs e showback por squad. O passo a passo que aplicamos em 90 dias.</p><div class="d-flex flex-wrap gap-3 mt-3 text-muted small"><span><i class="bi bi-clock me-1"></i>12 min de leitura</span><span><i class="bi bi-calendar me-1"></i>15/10/2026</span><span><i class="bi bi-person me-1"></i>IT Cloud Solutions</span></div></div></header>
+
+<article class="section"><div class="container"><div class="row g-5"><div class="col-lg-8">
+<div class="ratio ratio-16x9 mb-4 rounded-3 overflow-hidden"><img src="img/blog/cloud-finops.jpg" alt="Dashboard FinOps mostrando redução de custos" class="img-fluid object-fit-cover" style="object-fit:cover;"></div>
+
+<h2 class="section-title">O Desafio</h2>
+<p class="section-lead">Indústria automotiva, 2.500 recursos ativos, 12 subscriptions Azure, fatura mensal superior a R$ 1,2M. Falta de visibilidade: 68% dos recursos sem tags, instâncias oversized, zero governança de compra reservada.</p>
+
+<h2 class="section-title mt-5">A Abordagem</h2>
+<h3 class="h4 mt-4">1. Fundação: Tagging Obrigatório</h3>
+<p>Implementamos Azure Policy com efeito <code>deny</code> para criação de recursos sem tags <code>Environment</code>, <code>Owner</code>, <code>CostCenter</code>, <code>Application</code>, <code>Project</code>. Em 30 dias: cobertura de tags saltou de 32% para 99.7%.</p>
+
+<h3 class="h4 mt-4">2. Rightsizing Automatizado</h3>
+<p>Azure Advisor + script custom (Azure Functions + PowerShell) rodando diariamente: identifica VMs com CPU < 10% (P95 7d), memória < 20%, discos não anexados, IPs públicos órfãos. Aprovação via ServiceNow; execução em janela de manutenção. Resultado: 340 VMs redimensionadas, economia imediata de 18%.</p>
+
+<h3 class="h4 mt-4">3. Savings Plans & Reserved Instances</h3>
+<p>Análise de uso estável (baseline 90d) → compra de <strong>Compute Savings Plans 3y All Upfront</strong> para workloads previsíveis (AKS, VMSS, SAP). Para workloads variáveis: <strong>Savings Plans 1y No Upfront</strong> + <strong>Reserved Instances conversíveis</strong> (flexibilidade de tamanho/família). Cobertura de commit: 72% do spend compute.</p>
+
+<h3 class="h4 mt-4">4. Showback por Squad</h3>
+<p>Cost Management + Power BI Embedded: dashboards por <code>CostCenter</code>/<code>Application</code>. Alertas de anomalia (spike > 20% WoW) no Teams. Squads passam a ter <strong>ownership financeiro</strong> — cultura FinOps real.</p>
+
+<h2 class="section-title mt-5">Resultados (90 dias)</h2>
+<div class="row g-3 mb-4">
+<div class="col-md-4"><div class="modern-card text-center p-3"><strong class="d-block text-primary fs-2">32%</strong><small class="text-muted">redução total da fatura</small></div></div>
+<div class="col-md-4"><div class="modern-card text-center p-3"><strong class="d-block text-primary fs-2">R$ 460k/mês</strong><small class="text-muted">economia absoluta</small></div></div>
+<div class="col-md-4"><div class="modern-card text-center p-3"><strong class="d-block text-primary fs-2">72%</strong><small class="text-muted">cobertura commit</small></div></div>
+</div>
+
+<h3 class="h4">Lições Aprendidas</h3>
+<ul class="check-list">
+<li><i class="bi bi-check-circle-fill"></i> Tagging é pré-requisito — sem isso, FinOps é "chute"</li>
+<li><i class="bi bi-check-circle-fill"></i> Automação + aprovação humana = velocidade com segurança</li>
+<li><i class="bi bi-check-circle-fill"></i> Showback só funciona se houver <strong>consequência</strong> (bonus/OKR atrelado)</li>
+<li><i class="bi bi-check-circle-fill"></i> Revisão mensal de RIs/SPs evita "zombie commitments"</li>
+</ul>
+
+<div class="alert alert-info mt-4"><i class="bi bi-lightbulb me-2"></i><strong>Dica:</strong> Comece pelo <strong>Quick Wins</strong> (discos órfãos, IPs públicos, snapshots antigos) — costuma pagar o projeto no primeiro mês.</div>
+
+<hr class="my-5">
+
+<div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-info">FinOps</span><span class="badge text-bg-light text-dark">Azure</span><span class="badge text-bg-light text-dark">AWS</span><span class="badge text-bg-light text-dark">GCP</span><span class="badge text-bg-light text-dark">Savings Plans</span><span class="badge text-bg-light text-dark">Reserved Instances</span><span class="badge text-bg-light text-dark">Rightsizing</span><span class="badge text-bg-light text-dark">Tagging</span></div>
+
+<div class="d-flex gap-3"><a href="blog.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Voltar ao Blog</a><a href="contato.html?servico=FinOps" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Quero isso no meu ambiente</a></div>
+</div>
+
+<aside class="col-lg-4"><div class="modern-card p-4 sticky-top" style="top: 100px;"><h4 class="mb-3">Autor</h4><div class="d-flex align-items-center gap-3 mb-3"><div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width:56px;height:56px"><i class="bi bi-building text-white fs-3"></i></div><div><strong>IT Cloud Solutions</strong><br><small class="text-muted">Especialistas em Cloud & FinOps</small></div></div>
+<hr>
+<h5 class="mb-3">Artigos Relacionados</h5><ul class="list-unstyled"><li class="mb-2"><a href="blog-azure-landing-zone.html" class="text-decoration-none">Azure Landing Zone: do conceito à operação em produção</a></li><li class="mb-2"><a href="blog-swx-hybrid.html" class="text-decoration-none">Nuvem híbrida com SWX: soberania, custo previsível, baixa latência</a></li><li class="mb-2"><a href="blog-oci-database.html" class="text-decoration-none">Por que migrar Oracle Database para OCI Exadata Cloud@Customer</a></li></ul>
+<hr>
+<div class="d-grid gap-2"><a href="contato.html?servico=FinOps" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Falar com Especialista FinOps</a><a href="cases.html" class="btn btn-outline-secondary"><i class="bi bi-collection me-2"></i>Ver Cases de FinOps</a></div></div></aside></div></div></article>
+
+<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Cloud sem surpresa na fatura.</h2><p class="section-lead mx-auto mt-3">Governança, FinOps, backup, monitoramento e segurança para manter seu ambiente alinhado ao negócio.</p><a href="contato.html" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com Especialista</a></div></section>
+</main>
+<footer class="site-footer"><div class="container d-flex justify-content-between flex-wrap gap-3"><span>© 2026 IT Cloud Solutions.</span><a href="contato.html">Contato</a></div></footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="script.js"></script></body></html>

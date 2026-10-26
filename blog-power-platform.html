@@ -1,0 +1,100 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Power Platform governada: ALM, environments, DLP policies e Center of Excellence. Como evitar Shadow IT: strategy, tenant strategy, maker onboarding, solution lifecycle, monitoramento de uso, compliance de conectores."><title>Power Platform governada: ALM, environments, DLP policies e CoE | IT Cloud Solutions</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Power Platform governada: ALM, environments, DLP policies e Center of Excellence","description":"Como evitar Shadow IT: strategy, tenant strategy, maker onboarding, solution lifecycle, monitoramento de uso, compliance de conectores.","image":"https://itcloudsolutions.com.br/img/blog/power-platform.jpg","datePublished":"2026-10-02","dateModified":"2026-10-02","author":{"@type":"Organization","name":"IT Cloud Solutions","url":"https://itcloudsolutions.com.br"},"publisher":{"@type":"Organization","name":"IT Cloud Solutions","logo":{"@type":"ImageObject","url":"https://itcloudsolutions.com.br/img/logo.png"}},"articleSection":"Low-Code","keywords":["Power Platform","Power Apps","Power Automate","Power BI","ALM","DLP","Center of Excellence","Governança","Low-Code","Shadow IT"]}</script></head><body>
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="index.html">Início</a></li><li><a class="nav-link" href="cloud-providers.html">Cloud Providers</a></li><li><a class="nav-link" href="solucoes.html">Soluções</a></li><li><a class="nav-link" href="email-hosting.html">Email & Hosting</a></li><li><a class="nav-link" href="cases.html">Cases</a></li><li><a class="nav-link active" href="blog.html">Blog</a></li><li><a class="nav-link" href="contato.html">Contato</a></li><li><a class="nav-link" href="helpdesk.html">Helpdesk</a></li><li><a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a></li></ul></div></div></nav>
+<main>
+<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="index.html">Início</a></li><li class="breadcrumb-item"><a href="blog.html">Blog</a></li><li class="breadcrumb-item"><a href="blog.html#infra">Infra, DevOps & Plataformas</a></li><li class="breadcrumb-item active" aria-current="page">Power Platform Governada</li></ol></nav><span class="eyebrow text-secondary">Infra, DevOps & Plataformas · Low-Code</span><h1 class="mt-3">Power Platform governada: ALM, environments, DLP policies e Center of Excellence</h1><p class="mt-3 section-lead">Como evitar Shadow IT: strategy, tenant strategy, maker onboarding, solution lifecycle, monitoramento de uso, compliance de conectores.</p><div class="d-flex flex-wrap gap-3 mt-3 text-muted small"><span><i class="bi bi-clock me-1"></i>8 min de leitura</span><span><i class="bi bi-calendar me-1"></i>02/10/2026</span><span><i class="bi bi-person me-1"></i>IT Cloud Solutions</span></div></div></header>
+
+<article class="section"><div class="container"><div class="row g-5"><div class="col-lg-8">
+<div class="ratio ratio-16x9 mb-4 rounded-3 overflow-hidden"><img src="img/blog/power-platform.jpg" alt="Power Platform Governança" class="img-fluid object-fit-cover" style="object-fit:cover;"></div>
+
+<h2 class="section-title">O Problema: Shadow IT Low-Code</h2>
+<p class="section-lead">Usuários criam apps/flows no tenant default, usam conectores não aprovados (Dropbox, Gmail pessoal), dados vazam, não há versionamento, ninguém sabe o que roda em produção. <strong>Governança não é bloquear — é habilitar com guardrails.</strong></p>
+
+<h2 class="section-title mt-5">Estratégia de Governança (5 Pilares)</h2>
+<div class="row g-3 mb-4">
+<div class="col-md-6"><div class="modern-card h-100 border-primary"><div class="modern-icon"><i class="bi bi-diagram-3 text-primary"></i></div><h5>1. Tenant Strategy</h5><p class="text-muted small">Single tenant vs multi-tenant (região, isolamento, B2B). Default environment = apenas system apps. Criação de envs controlada (Dev/Test/Prod por domínio).</p></div></div>
+<div class="col-md-6"><div class="modern-card h-100 border-info"><div class="modern-icon"><i class="bi bi-shield-lock text-info"></i></div><h5>2. DLP Policies (Data Loss Prevention)</h5><p class="text-muted small">Bloqueia conectores não aprovados por grupo de negócio. Ex: Financeiro → só SQL, SharePoint, Dataverse, Dynamics. TI → todos. Padrão: deny all, allow list.</p></div></div>
+<div class="col-md-6"><div class="modern-card h-100 border-success"><div class="modern-icon"><i class="bi bi-gear-fill text-success"></i></div><h5>3. ALM (Application Lifecycle Management)</h5><p class="text-muted small">Solutions (managed/unmanaged), pipelines (Power Platform Build Tools / GitHub Actions / Azure DevOps), export/import automatizado, versionamento semântico, release gates.</p></div></div>
+<div class="col-md-6"><div class="modern-card h-100 border-warning"><div class="modern-icon"><i class="bi bi-people text-warning"></i></div><h5>4. Maker Onboarding & Enablement</h5><p class="text-muted small">Training path (PL-900 → PL-100/200), mentoria, templates aprovados, component library, connectors certificados, "citizen developer" ↔ "pro developer" partnership.</p></div></div>
+<div class="col-md-6"><div class="modern-card h-100 border-danger"><div class="modern-icon"><i class="bi bi-graph-up text-danger"></i></div><h5>5. Center of Excellence (CoE) Starter Kit</h5><p class="text-muted small">Dashboard de uso (apps, flows, connectors, makers), compliance (DLP violations, premium license usage), governance (environment strategy, naming convention), nurture (COE app para makers).</p></div></div>
+</div>
+
+<h2 class="section-title mt-5">DLP Policies — Matriz Prática</h2>
+<table class="table table-sm table-hover"><thead><tr><th>Grupo de Negócio</th><th>Conectores Permitidos (Business)</th><th>Conectores Bloqueados</th><th>Ambientes</th></tr></thead><tbody><tr><td>Financeiro / Contabilidade</td><td>SQL Server, Dataverse, Dynamics 365, SharePoint, Excel Online (Business), OneDrive for Business</td><td>Gmail, Dropbox, Box, Google Drive, Twitter, Facebook, HTTP (custom)</td><td>Dev / Test / Prod (isolados)</td></tr><tr><td>RH / Jurídico</td><td>Dataverse, SharePoint, Outlook, Teams, Adobe Sign, DocuSign</td><td>Conectores de armazenamento pessoal, redes sociais</td><td>Dev / Prod</td></tr><tr><td>Vendas / Marketing</td><td>Dataverse, Dynamics 365 Sales, Outlook, Teams, LinkedIn, Mailchimp, HubSpot</td><td>Armazenamento pessoal, FTP, HTTP custom</td><td>Dev / Test / Prod</td></tr><tr><td>TI / Desenvolvedores</td><td>Todos (com justificativa documentada)</td><td>Nenhum (auditoria contínua)</td><td>Dev / Test / Prod / Sandbox</td></tr><tr><td>Demais (Padrão)</td><td>Dataverse, SharePoint, Outlook, Teams, Excel Online (Business)</td><td>Premium connectors, custom connectors, armazenamento pessoal</td><td>Default (somente leitura)</td></tr></tbody></table>
+
+<h2 class="section-title mt-5">ALM Pipeline (GitHub Actions + Power Platform CLI)</h2>
+<pre class="bg-dark text-light p-3 rounded-3"><code>name: Power Platform ALM
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Power Platform CLI
+        run: npm install -g @microsoft/powerplatform-cli
+      - name: Authenticate
+        run: pac auth create --url ${{ secrets.PP_URL }} --username ${{ secrets.PP_USER }} --password ${{ secrets.PP_PASS }}
+      - name: Export Solution (Managed)
+        run: |
+          pac solution export \
+            --environment ${{ secrets.ENV_DEV }} \
+            --solution-name "MinhaSolucao" \
+            --path ./solutions/MinhaSolucao_${{ github.sha }}.zip \
+            --managed true
+      - name: Publish to Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: solution
+          path: ./solutions/
+
+  deploy-staging:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    environment: staging
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: Import to Staging
+        run: |
+          pac solution import \
+            --environment ${{ secrets.ENV_STAGING }} \
+            --path ./solutions/MinhaSolucao_${{ github.sha }}.zip \
+            --activate-plugins true \
+            --skip-dependency-check false
+
+  deploy-prod:
+    needs: deploy-staging
+    environment: production
+    steps:
+      - uses: actions/download-artifact@v4
+      - name: Import to Prod (Manual Approval)
+        run: |
+          pac solution import \
+            --environment ${{ secrets.ENV_PROD }} \
+            --path ./solutions/MinhaSolucao_${{ github.sha }}.zip \
+            --activate-plugins true \
+            --hold-on-failure true</code></pre>
+
+<h2 class="section-title mt-5">Center of Excellence — O que Monitorar</h2>
+<table class="table table-sm table-hover"><thead><tr><th>KPI</th><th>Target</th><th>Ação se Fora</th></tr></thead><tbody><tr><td>Apps ativos / total</td><td>> 70%</td><td>Arquivar não usados > 90d</td></tr><tr><td>Flows com erro > 24h</td><td>0</td><td>Alerta maker + owner</td></tr><tr><td>Conectores premium não aprovados</td><td>0</td><td>Bloqueio DLP + notificação</td></tr><tr><td>Makers sem training concluído</td><td>0</td><td>Bloquear criação até concluir</td></tr><tr><td>Soluções não versionadas (unmanaged em Prod)</td><td>0</td><td>Converter para managed + pipeline</td></tr><tr><td>Licenças premium ociosas (> 30d sem uso)</td><td>< 5%</td><td>Recolher + realocar</td></tr></tbody></table>
+
+<div class="alert alert-info mt-4"><i class="bi bi-lightbulb me-2"></i><strong>Dica:</strong> Implante o <strong>CoE Starter Kit</strong> (Microsoft mantém, open-source) — já vem com dashboards Power BI, app Canvas para makers, flows de governança, Dataverse tables. Customize para sua realidade em dias, não meses.</div>
+
+<hr class="my-5">
+<div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-secondary">Low-Code</span><span class="badge text-bg-light text-dark">Power Platform</span><span class="badge text-bg-light text-dark">Power Apps</span><span class="badge text-bg-light text-dark">Power Automate</span><span class="badge text-bg-light text-dark">ALM</span><span class="badge text-bg-light text-dark">DLP</span><span class="badge text-bg-light text-dark">Center of Excellence</span><span class="badge text-bg-light text-dark">Governança</span></div>
+<div class="d-flex gap-3"><a href="blog.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Voltar ao Blog</a><a href="contato.html?servico=LowCode" class="btn btn-secondary"><i class="bi bi-envelope me-2"></i>Governar minha Power Platform</a></div>
+</div>
+
+<aside class="col-lg-4"><div class="modern-card p-4 sticky-top" style="top: 100px;"><h4 class="mb-3">Autor</h4><div class="d-flex align-items-center gap-3 mb-3"><div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width:56px;height:56px"><i class="bi bi-building text-white fs-3"></i></div><div><strong>IT Cloud Solutions</strong><br><small class="text-muted">Especialistas Power Platform</small></div></div>
+<hr>
+<h5 class="mb-3">Artigos Relacionados</h5><ul class="list-unstyled"><li class="mb-2"><a href="blog-k8s-gitops.html" class="text-decoration-none">GitOps com ArgoCD</a></li><li class="mb-2"><a href="blog-terraform-modules.html" class="text-decoration-none">Módulos Terraform</a></li><li class="mb-2"><a href="blog-devsecops.html" class="text-decoration-none">Shift-left security</a></li></ul>
+<hr>
+<div class="d-grid gap-2"><a href="contato.html?servico=LowCode" class="btn btn-secondary"><i class="bi bi-envelope me-2"></i>Falar com Especialista Power Platform</a><a href="solucoes.html" class="btn btn-outline-secondary"><i class="bi bi-braces me-2"></i>Ver PaaS & DevOps</a></div></div></aside></div></div></article>
+
+<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Cloud sem surpresa na fatura.</h2><p class="section-lead mx-auto mt-3">Governança, FinOps, backup, monitoramento e segurança para manter seu ambiente alinhado ao negócio.</p><a href="contato.html" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com Especialista</a></div></section>
+</main>
+<footer class="site-footer"><div class="container d-flex justify-content-between flex-wrap gap-3"><span>© 2026 IT Cloud Solutions.</span><a href="contato.html">Contato</a></div></footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="script.js"></script></body></html>

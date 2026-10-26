@@ -1,0 +1,70 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Azure Landing Zone: do conceito à operação em produção. Como estruturamos management groups, policies, blueprints, conectividade hub-spoke e guardrails para um ambiente governável desde o dia 1."><title>Azure Landing Zone: do conceito à operação em produção | IT Cloud Solutions</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Azure Landing Zone: do conceito à operação em produção","description":"Como estruturamos management groups, policies, blueprints, conectividade hub-spoke e guardrails para um ambiente governável desde o dia 1.","image":"https://itcloudsolutions.com.br/img/blog/azure-landing-zone.jpg","datePublished":"2026-10-08","dateModified":"2026-10-08","author":{"@type":"Organization","name":"IT Cloud Solutions","url":"https://itcloudsolutions.com.br"},"publisher":{"@type":"Organization","name":"IT Cloud Solutions","logo":{"@type":"ImageObject","url":"https://itcloudsolutions.com.br/img/logo.png"}},"articleSection":"Azure","keywords":["Azure","Landing Zone","Management Groups","Azure Policy","Hub-Spoke","Guardrails","CAF","WAF","Governança Cloud"]}</script></head><body>
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="index.html">Início</a></li><li><a class="nav-link" href="cloud-providers.html">Cloud Providers</a></li><li><a class="nav-link" href="solucoes.html">Soluções</a></li><li><a class="nav-link" href="email-hosting.html">Email & Hosting</a></li><li><a class="nav-link" href="cases.html">Cases</a></li><li><a class="nav-link active" href="blog.html">Blog</a></li><li><a class="nav-link" href="contato.html">Contato</a></li><li><a class="nav-link" href="helpdesk.html">Helpdesk</a></li><li><a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a></li></ul></div></div></nav>
+<main>
+<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="index.html">Início</a></li><li class="breadcrumb-item"><a href="blog.html">Blog</a></li><li class="breadcrumb-item"><a href="blog.html#cloud">Cloud & Multicloud</a></li><li class="breadcrumb-item active" aria-current="page">Azure Landing Zone</li></ol></nav><span class="eyebrow text-primary">Cloud & Multicloud · Azure</span><h1 class="mt-3">Azure Landing Zone: do conceito à operação em produção</h1><p class="mt-3 section-lead">Como estruturamos management groups, policies, blueprints, conectividade hub-spoke e guardrails para um ambiente governável desde o dia 1.</p><div class="d-flex flex-wrap gap-3 mt-3 text-muted small"><span><i class="bi bi-clock me-1"></i>10 min de leitura</span><span><i class="bi bi-calendar me-1"></i>08/10/2026</span><span><i class="bi bi-person me-1"></i>IT Cloud Solutions</span></div></div></header>
+
+<article class="section"><div class="container"><div class="row g-5"><div class="col-lg-8">
+<div class="ratio ratio-16x9 mb-4 rounded-3 overflow-hidden"><img src="img/blog/azure-landing-zone.jpg" alt="Diagrama da arquitetura Azure Landing Zone" class="img-fluid object-fit-cover" style="object-fit:cover;"></div>
+
+<h2 class="section-title">Por que Landing Zone?</h2>
+<p class="section-lead">A maioria das empresas entra no Azure criando recursos direto na subscription raiz. Resultado: sprawl, custos invisíveis, segurança frágil, auditoria impossível. A <strong>Azure Landing Zone (ALZ)</strong> resolve isso com uma arquitetura de referência baseada no <strong>Cloud Adoption Framework (CAF)</strong>.</p>
+
+<h2 class="section-title mt-5">Nossa Implementação</h2>
+<h3 class="h4 mt-4">1. Hierarquia de Management Groups</h3>
+<pre class="bg-dark text-light p-3 rounded-3"><code>Root MG
+├── Platform
+│   ├── Connectivity
+│   ├── Identity
+│   └── Management
+├── Landing Zones
+│   ├── Corp
+│   ├── Online
+│   └── Sandbox
+└── Decommissioned</code></pre>
+<p>Cada MG herda policies do pai. <code>Platform</code> = infra compartilhada (Firewall, DNS, ExpressRoute, Azure AD). <code>Landing Zones</code> = workloads de negócio isoladas.</p>
+
+<h3 class="h4 mt-4">2. Policy-as-Code (Azure Policy + Bicep)</h3>
+<ul class="check-list">
+<li><i class="bi bi-check-circle-fill"></i> <strong>Deny:</strong> recursos sem tags obrigatórias, discos não criptografados, storage público, VMs sem backup</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Audit:</strong> SKUs não aprovadas, regiões não permitidas, NSGs muito permissivas</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>DeployIfNotExists:</strong> Diagnostics → Log Analytics, Microsoft Defender for Cloud, Backup</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Initiative (Policy Set):</strong> CAF Foundation, PCI-DSS, ISO 27001, CIS Azure Foundations</li>
+</ul>
+
+<h3 class="h4 mt-4">3. Conectividade Hub-Spoke</h3>
+<p><strong>Hub Central (Connectivity MG):</strong> Azure Firewall Manager, VPN Gateway, ExpressRoute, Azure Bastion, Private DNS Zones. <strong>Spokes (Landing Zones):</strong> VNet peering para o hub, UDR forçando tráfego via Firewall, NSGs por subnet.</p>
+
+<h3 class="h4 mt-4">4. Guardrails Operacionais</h3>
+<ul class="check-list">
+<li><i class="bi bi-check-circle-fill"></i> <strong>Resource Locks:</strong> CanNotDelete em recursos de plataforma (Firewall, Log Analytics, Key Vault)</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Blueprints/Deployment Stacks:</strong> provisionamento repetível de spokes novos (infra + policies + RBAC)</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Cost Management:</strong> budgets por MG, alertas 80%/100%, showback via Power BI</li>
+<li><i class="bi bi-check-circle-fill"></i> <strong>Identity:</strong> PIM para roles privilegiadas, Conditional Access, break-glass accounts</li>
+</ul>
+
+<h2 class="section-title mt-5">Resultado Prático</h2>
+<div class="row g-3 mb-4">
+<div class="col-md-6"><div class="modern-card text-center p-3"><strong class="d-block text-primary fs-2">4h</strong><small class="text-muted">para provisionar novo spoke</small></div></div>
+<div class="col-md-6"><div class="modern-card text-center p-3"><strong class="d-block text-primary fs-2">0</strong><small class="text-muted">recursos fora de compliance</small></div></div>
+<div class="col-md-6"><div class="modern-card text-center p-3"><strong class="d-block text-primary fs-2">100%</strong><small class="text-muted">cobertura de tags</small></div></div>
+<div class="col-md-6"><div class="modern-card text-center p-3"><strong class="d-block text-primary fs-2">-40%</strong><small class="text-muted">tempo de onboarding app</small></div></div>
+</div>
+
+<div class="alert alert-info mt-4"><i class="bi bi-lightbulb me-2"></i><strong>Pulo do gato:</strong> Use <strong>Deployment Stacks (preview)</strong> em vez de Blueprints — suporte nativo a Bicep, drift detection, delete behavior configurável.</div>
+
+<hr class="my-5">
+
+<div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-primary">Azure</span><span class="badge text-bg-light text-dark">Landing Zone</span><span class="badge text-bg-light text-dark">CAF</span><span class="badge text-bg-light text-dark">Policy as Code</span><span class="badge text-bg-light text-dark">Hub-Spoke</span><span class="badge text-bg-light text-dark">Governança</span></div>
+
+<div class="d-flex gap-3"><a href="blog.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Voltar ao Blog</a><a href="contato.html?servico=LandingZone" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Implementar na minha organização</a></div>
+</div>
+
+<aside class="col-lg-4"><div class="modern-card p-4 sticky-top" style="top: 100px;"><h4 class="mb-3">Autor</h4><div class="d-flex align-items-center gap-3 mb-3"><div class="bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width:56px;height:56px"><i class="bi bi-building text-white fs-3"></i></div><div><strong>IT Cloud Solutions</strong><br><small class="text-muted">Especialistas Azure</small></div></div>
+<hr>
+<h5 class="mb-3">Artigos Relacionados</h5><ul class="list-unstyled"><li class="mb-2"><a href="blog-finops-azure.html" class="text-decoration-none">FinOps na prática: redução de 32% no custo cloud</a></li><li class="mb-2"><a href="blog-swx-hybrid.html" class="text-decoration-none">Nuvem híbrida com SWX</a></li><li class="mb-2"><a href="blog-zero-trust.html" class="text-decoration-none">Zero Trust na prática</a></li></ul>
+<hr>
+<div class="d-grid gap-2"><a href="contato.html?servico=LandingZone" class="btn btn-primary"><i class="bi bi-envelope me-2"></i>Falar com Especialista Azure</a><a href="cases.html" class="btn btn-outline-secondary"><i class="bi bi-collection me-2"></i>Ver Cases Azure</a></div></div></aside></div></div></article>
+
+<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Cloud sem surpresa na fatura.</h2><p class="section-lead mx-auto mt-3">Governança, FinOps, backup, monitoramento e segurança para manter seu ambiente alinhado ao negócio.</p><a href="contato.html" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com Especialista</a></div></section>
+</main>
+<footer class="site-footer"><div class="container d-flex justify-content-between flex-wrap gap-3"><span>© 2026 IT Cloud Solutions.</span><a href="contato.html">Contato</a></div></footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="script.js"></script></body></html>
