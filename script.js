@@ -102,7 +102,6 @@ const FormValidator = {
     }
 };
 
-<<<<<<< HEAD
 // Navegação contextual e microinterações acessíveis do novo design system.
 document.addEventListener('DOMContentLoaded', () => {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
@@ -127,8 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-=======
->>>>>>> c567f40c3014dd2621e80760167029a6fec41035
 // ========================================
 // CONFIGURAÇÕES GLOBAIS
 // ========================================
