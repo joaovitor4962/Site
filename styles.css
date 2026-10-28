@@ -374,7 +374,7 @@ h1, h2, h3, h4 { letter-spacing: -.045em; }
 
 /* Full-screen image backgrounds for content sections */
 .section-bg { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 100vh; padding: clamp(4.5rem, 8vw, 8rem) 0; overflow: hidden; }
-.section-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(6,16,31,.85) 0%, rgba(6,16,31,.55) 40%, rgba(6,16,31,.15) 100%), var(--hero-image) center / cover no-repeat; filter: blur(2px); transform: scale(1.02); animation: none; background-attachment: fixed; }
+.section-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(6,16,31,.85) 0%, rgba(6,16,31,.55) 40%, rgba(6,16,31,.15) 100%), var(--hero-image) center / cover no-repeat; filter: blur(2px); transform: scale(1.02); animation: none; background-attachment: scroll; }
 .section-bg > .container { position: relative; z-index: 1; }
 .section-bg img { display: none; }
 .section-bg .section-title { color: #fff; }
@@ -640,7 +640,4 @@ body.page-blog .page-hero > .container,
 body.page-contato .page-hero > .container {
     position: relative;
     z-index: 1;
-}
-@media (max-width: 767px) {
-    .section-bg::before { background-attachment: scroll; }
 }
