@@ -1,7 +1,7 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Case IT Cloud Solutions: Refatoração para serverless na AWS. Monólito em EC2 → API Gateway + Lambda + DynamoDB + EventBridge + Step Functions. Custos 60% menores, escala 10x, p95 < 50ms."><title>Case: Serverless AWS EdTech | IT Cloud Solutions</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https://schema.org","@type":"CaseStudy","name":"Refatoração para Serverless na AWS: Custos 60% Menores, Escala Automática","description":"EdTech migrou monólito EC2 para API Gateway + Lambda + DynamoDB + EventBridge + Step Functions. Cold start otimizado, observabilidade nativa. 60% menos custo, 10x escala.","image":"https://itcloudsolutions.com.br/img/cases/case-aws-serverless.jpg","author":{"@type":"Organization","name":"IT Cloud Solutions","url":"https://itcloudsolutions.com.br"},"datePublished":"2026-10-05","publisher":{"@type":"Organization","name":"IT Cloud Solutions"},"about":{"@type":"Thing","name":"Serverless Migration"},"keywords":["AWS","Serverless","Lambda","DynamoDB","API Gateway","EventBridge","Step Functions","EdTech"]}</script></head><body>
-<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="index.html">Início</a></li><li><a class="nav-link" href="cloud-providers.html">Cloud Providers</a></li><li><a class="nav-link" href="solucoes.html">Soluções</a></li><li><a class="nav-link" href="email-hosting.html">Email & Hosting</a></li><li><a class="nav-link" href="cases.html">Cases</a></li><li><a class="nav-link" href="blog.html">Blog</a></li><li><a class="nav-link" href="contato.html">Contato</a></li><li><a class="nav-link" href="helpdesk.html">Helpdesk</a></li><li><a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a></li></ul></div></div></nav>
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="/"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="/">Início</a></li><li><a class="nav-link" href="/cloud-providers/">Cloud Providers</a></li><li><a class="nav-link" href="/solucoes/">Soluções</a></li><li><a class="nav-link" href="/email-hosting/">Email & Hosting</a></li><li><a class="nav-link" href="/cases/">Cases</a></li><li><a class="nav-link" href="/blog/">Blog</a></li><li><a class="nav-link" href="/contato/">Contato</a></li><li><a class="nav-link" href="/helpdesk/">Helpdesk</a></li><li><a class="nav-link" href="/trabalhe-conosco/">Trabalhe Conosco</a></li></ul></div></div></nav>
 <main>
-<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="index.html">Início</a></li><li class="breadcrumb-item"><a href="cases.html">Cases</a></li><li class="breadcrumb-item active" aria-current="page">AWS Serverless</li></ol></nav><span class="eyebrow text-info">Case Study</span><h1 class="mt-3">Refatoração para serverless na AWS: custos 60% menores, escala automática</h1><p class="mt-3 section-lead">EdTech, monólito em EC2. Migramos para API Gateway + Lambda + DynamoDB + EventBridge + Step Functions. Cold start otimizado, observabilidade nativa.</p><div class="d-flex flex-wrap gap-3 mt-4"><span class="badge text-bg-info px-3 py-2">AWS</span><span class="badge text-bg-light text-dark px-3 py-2">Serverless</span><span class="badge text-bg-light text-dark px-3 py-2">Lambda</span><span class="badge text-bg-light text-dark px-3 py-2">Startup</span></div></div></header>
+<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="/">Início</a></li><li class="breadcrumb-item"><a href="/cases/">Cases</a></li><li class="breadcrumb-item active" aria-current="page">AWS Serverless</li></ol></nav><span class="eyebrow text-info">Case Study</span><h1 class="mt-3">Refatoração para serverless na AWS: custos 60% menores, escala automática</h1><p class="mt-3 section-lead">EdTech, monólito em EC2. Migramos para API Gateway + Lambda + DynamoDB + EventBridge + Step Functions. Cold start otimizado, observabilidade nativa.</p><div class="d-flex flex-wrap gap-3 mt-4"><span class="badge text-bg-info px-3 py-2">AWS</span><span class="badge text-bg-light text-dark px-3 py-2">Serverless</span><span class="badge text-bg-light text-dark px-3 py-2">Lambda</span><span class="badge text-bg-light text-dark px-3 py-2">Startup</span></div></div></header>
 
 <section class="section"><div class="container"><div class="row g-5"><div class="col-lg-8"><div class="ratio ratio-16x9 mb-4"><img src="img/cases/case-aws-serverless.jpg" alt="AWS Serverless Architecture" class="img-fluid object-fit-cover rounded-3" style="object-fit:cover;"></div><h2 class="section-title">O Desafio</h2><p class="section-lead">Startup EdTech com plataforma de cursos online, monólito Node.js/Express em EC2 Auto Scaling Group. Picos de acesso (lançamentos, provas) causavam scale-out lento, cold starts de instância, custos elevados 24/7. Time pequeno, sem expertise DevOps profunda.</p><h3 class="mt-4 mb-3">Dores</h3><ul class="check-list"><li><i class="bi bi-x-circle-fill text-danger"></i><strong>Scale-out lento:</strong> EC2 launch 3-5 min, usuários viam erro 5xx no pico</li><li><i class="bi bi-x-circle-fill text-danger"></i><strong>Custo ocioso:</strong> ASG min=3 para buffer, 70% CPU idle fora de pico</li><li><i class="bi bi-x-circle-fill text-danger"></i><strong>Deploy arriscado:</strong> Rolling update, health check frágil, rollback manual</li><li><i class="bi bi-x-circle-fill text-danger"></i><strong>Observabilidade limitada:</strong> CloudWatch básico, sem tracing distribuído</li><li><i class="bi bi-x-circle-fill text-danger"></i><strong>Time enxuto:</strong> 3 devs, nenhum DevOps dedicado</li></ul>
 
@@ -43,15 +43,15 @@
 <hr>
 <h5 class="mb-3">Próximos Passos</h5><ul class="check-list"><li><i class="bi bi-check-circle-fill"></i> AppSync (GraphQL) para real-time (chat, colaboração)</li><i class="bi bi-check-circle-fill"></i> Lambda SnapStart (Java) para microserviços legados</li><i class="bi bi-check-circle-fill"></i> EventBridge Pipes para integração SaaS sem código</li></ul>
 <hr>
-<div class="d-grid gap-2"><a href="contato.html?servico=AWS" class="btn btn-info"><i class="bi bi-envelope me-2"></i>Quero esse resultado</a><a href="cases.html" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Voltar aos Cases</a></div></div></div></div></section>
+<div class="d-grid gap-2"><a href="contato.html?servico=AWS" class="btn btn-info"><i class="bi bi-envelope me-2"></i>Quero esse resultado</a><a href="/cases/" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Voltar aos Cases</a></div></div></div></div></section>
 
-<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Seu próximo case começa com uma conversa.</h2><p class="section-lead mx-auto mt-3">Tem desafio parecido? Vamos entender seu contexto e mostrar o caminho mais curto para o resultado.</p><a href="contato.html" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com a IT Cloud</a></div></section>
+<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Seu próximo case começa com uma conversa.</h2><p class="section-lead mx-auto mt-3">Tem desafio parecido? Vamos entender seu contexto e mostrar o caminho mais curto para o resultado.</p><a href="/contato/" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com a IT Cloud</a></div></section>
 </main>
 <footer class="site-footer">
     <div class="container footer-main">
         <div class="footer-grid">
             <section aria-label="Identificação e contato">
-                <a class="footer-logo" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions"></a>
+                <a class="footer-logo" href="/"><img src="img/logo.png" alt="IT Cloud Solutions"></a>
                 <ul class="footer-contact">
                     <li><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><span>R. Trinta e Quatro, Bloco 50, Prédio Moa, Cuiabá - MT</span></li>
                     <li><i class="bi bi-telephone-fill" aria-hidden="true"></i><a href="tel:+5518996529725">(18) 99652-9725</a></li>
@@ -62,24 +62,24 @@
             <section>
                 <h2 class="footer-heading">EXPLORAR</h2>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="cloud-providers.html">Cloud</a></li>
-                    <li><a href="solucoes.html">Soluções</a></li>
-                    <li><a href="email-hosting.html">E-mail e Hosting</a></li>
-                    <li><a href="cases.html">Cases</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                    <li><a href="helpdesk.html">Help Desk</a></li>
-                    <li><a href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/cloud-providers/">Cloud</a></li>
+                    <li><a href="/solucoes/">Soluções</a></li>
+                    <li><a href="/email-hosting/">E-mail e Hosting</a></li>
+                    <li><a href="/cases/">Cases</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contato/">Contato</a></li>
+                    <li><a href="/helpdesk/">Help Desk</a></li>
+                    <li><a href="/trabalhe-conosco/">Trabalhe Conosco</a></li>
                 </ul>
             </section>
             <section>
                 <h2 class="footer-heading">SUPORTE</h2>
                 <ul class="footer-links">
-                    <li><a href="contato.html">Fale Conosco</a></li>
-                    <li><a href="contato.html#faqAccordion">FAQ</a></li>
-                    <li><a href="helpdesk.html">Ajuda</a></li>
-                    <li><a href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                    <li><a href="/contato/">Fale Conosco</a></li>
+                    <li><a href="/contato/#faqAccordion">FAQ</a></li>
+                    <li><a href="/helpdesk/">Ajuda</a></li>
+                    <li><a href="/trabalhe-conosco/">Trabalhe Conosco</a></li>
                 </ul>
             </section>
             <section>
