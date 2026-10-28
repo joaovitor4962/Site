@@ -362,9 +362,60 @@ h1, h2, h3, h4 { letter-spacing: -.045em; }
 .check-list li { display: flex; gap: .7rem; margin: .7rem 0; color: #53647a; }
 .check-list i { color: #15996f; margin-top: .25rem; }
 .page-hero { padding: 9rem 0 4rem; color: #fff; background: linear-gradient(135deg,#06101f,#0d3960); }
-.home-hero { background: linear-gradient(rgba(6,16,31,.32),rgba(6,16,31,.32)), url("img/img1.png") center / cover no-repeat; }
+.home-hero { --hero-image: url("img/img1.png"); }
+.home-hero .row > .col-lg-6:first-child { transform: translateY(-3rem); }
 .page-hero h1 { font-size: clamp(2.7rem, 5vw, 4.5rem); }
 .page-hero p { max-width: 680px; color: #c7d7e8; font-size: 1.1rem; }
+
+/* Full-screen background image sections with left-darker gradient overlay */
+.hero-bg { position: relative; isolation: isolate; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.hero-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(6,16,31,.85) 0%, rgba(6,16,31,.55) 40%, rgba(6,16,31,.15) 100%), var(--hero-image) center / cover no-repeat; filter: blur(2px); transform: scale(1.02); }
+.hero-bg > .container { position: relative; z-index: 1; }
+
+/* Full-screen image backgrounds for content sections */
+.section-bg { position: relative; isolation: isolate; display: flex; align-items: center; min-height: 100vh; padding: clamp(4.5rem, 8vw, 8rem) 0; overflow: hidden; }
+.section-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(6,16,31,.8) 0%, rgba(6,16,31,.45) 45%, rgba(6,16,31,.1) 100%), var(--hero-image) center / cover no-repeat; filter: blur(2px); transform: scale(1.02); }
+.section-bg > .container { position: relative; z-index: 1; }
+.section-bg img { display: none; }
+.section-bg .section-title { color: #fff; }
+.section-bg .section-lead,
+.section-bg .text-muted { color: #c7d7e8 !important; }
+.section-bg .bg-light .text-muted,
+.section-bg .table .text-muted { color: var(--muted) !important; }
+.section-bg .bg-light { color: var(--ink); }
+.section-bg .bg-light strong { color: var(--navy); }
+.section-bg .eyebrow { color: #72caff; }
+.section-bg .check-list li { color: #e4edf7; }
+.section-bg .table { --bs-table-bg: rgba(255,255,255,.92); --bs-table-color: var(--ink); }
+.provider-comparison .table { --bs-table-border-color: #9eafbf; border: 1px solid #8499ad; box-shadow: 0 8px 24px rgba(7,17,31,.18); }
+.provider-comparison .table > :not(caption) > * > * { padding: .8rem 1rem; border: 1px solid #b8c5d2; }
+.provider-comparison .row > .col-lg-6:first-child { flex: 0 0 100%; width: 100%; }
+.provider-comparison .row > .col-lg-6:last-child { display: none; }
+.provider-comparison .table-responsive { overflow-x: visible; }
+.provider-comparison .table { width: 100%; table-layout: fixed; }
+.provider-comparison .table th,
+.provider-comparison .table td { overflow-wrap: anywhere; }
+.provider-comparison .table tr > :nth-child(1) { width: 28%; }
+.provider-comparison .table tr > :nth-child(2),
+.provider-comparison .table tr > :nth-child(3) { width: 21%; }
+.provider-comparison .table tr > :nth-child(4) { width: 30%; }
+.provider-comparison .table thead th { color: #fff; background: #123b5a; border-color: #8da3b8; white-space: normal; }
+.provider-comparison .table tbody tr:nth-child(even) > * { background-color: #edf3f8; }
+.provider-comparison .table tbody tr:nth-child(odd) > * { background-color: #fff; }
+.provider-comparison .table tbody tr:hover > * { background-color: #dcecf7; }
+@media (max-width: 575.98px) {
+    .provider-comparison .table > :not(caption) > * > * { padding: .5rem .35rem; }
+    .provider-comparison .table { font-size: .85rem; }
+}
+.section-bg .modern-card { color: var(--ink); background: #fff; }
+.section-bg .modern-card h2,
+.section-bg .modern-card h3,
+.section-bg .modern-card .section-title { color: var(--navy); }
+.section-bg .modern-card .eyebrow { color: #1680c5; }
+.section-bg .modern-card p,
+.section-bg .modern-card .section-lead,
+.section-bg .modern-card .text-muted { color: var(--muted) !important; }
+.section-bg .modern-card a:not(.btn) { color: #087cb7; }
 .dark-band { color: #fff; background: linear-gradient(135deg,#06101f,#103e61); }
 .dark-band .section-title { color: #fff; }
 .site-footer { padding: 3.5rem 0 0; color: #c2cede; background: #06101f; }
