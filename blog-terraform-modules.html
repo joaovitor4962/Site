@@ -1,7 +1,7 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Módulos Terraform reutilizáveis: versionamento, testagem e registry privado. Estrutura de repositório, semantic versioning, terratest, checkov, infracost, renovate. Como entregamos infra como produto interno."><title>Módulos Terraform reutilizáveis: versionamento, testagem e registry privado | IT Cloud Solutions</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Módulos Terraform reutilizáveis: versionamento, testagem e registry privado","description":"Estrutura de repositório, semantic versioning, terratest, checkov, infracost, renovate. Como entregamos infra como produto interno.","image":"https://itcloudsolutions.com.br/img/blog/terraform-modules.jpg","datePublished":"2026-10-15","dateModified":"2026-10-15","author":{"@type":"Organization","name":"IT Cloud Solutions","url":"https://itcloudsolutions.com.br"},"publisher":{"@type":"Organization","name":"IT Cloud Solutions","logo":{"@type":"ImageObject","url":"https://itcloudsolutions.com.br/img/logo.png"}},"articleSection":"IaC","keywords":["Terraform","Modules","Registry","Semantic Versioning","Terratest","Checkov","Infracost","Renovate","IaC","Private Registry"]}</script></head><body>
-<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="index.html">Início</a></li><li><a class="nav-link" href="cloud-providers.html">Cloud Providers</a></li><li><a class="nav-link" href="solucoes.html">Soluções</a></li><li><a class="nav-link" href="email-hosting.html">Email & Hosting</a></li><li><a class="nav-link" href="cases.html">Cases</a></li><li><a class="nav-link active" href="blog.html">Blog</a></li><li><a class="nav-link" href="contato.html">Contato</a></li><li><a class="nav-link" href="helpdesk.html">Helpdesk</a></li><li><a class="nav-link" href="trabalhe-conosco.html">Trabalhe Conosco</a></li></ul></div></div></nav>
+<nav class="navbar navbar-expand-lg fixed-top" aria-label="Navegação principal"><div class="container"><a class="navbar-brand" href="/"><img src="img/logo.png" alt="IT Cloud Solutions" height="42"></a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button><div id="menu" class="collapse navbar-collapse"><ul class="navbar-nav ms-auto"><li><a class="nav-link" href="/">Início</a></li><li><a class="nav-link" href="/cloud-providers/">Cloud Providers</a></li><li><a class="nav-link" href="/solucoes/">Soluções</a></li><li><a class="nav-link" href="/email-hosting/">Email & Hosting</a></li><li><a class="nav-link" href="/cases/">Cases</a></li><li><a class="nav-link active" href="/blog/">Blog</a></li><li><a class="nav-link" href="/contato/">Contato</a></li><li><a class="nav-link" href="/helpdesk/">Helpdesk</a></li><li><a class="nav-link" href="/trabalhe-conosco/">Trabalhe Conosco</a></li></ul></div></div></nav>
 <main>
-<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="index.html">Início</a></li><li class="breadcrumb-item"><a href="blog.html">Blog</a></li><li class="breadcrumb-item"><a href="blog.html#infra">Infra, DevOps & Plataformas</a></li><li class="breadcrumb-item active" aria-current="page">Módulos Terraform</li></ol></nav><span class="eyebrow text-info">Infra, DevOps & Plataformas · IaC</span><h1 class="mt-3">Módulos Terraform reutilizáveis: versionamento, testagem e registry privado</h1><p class="mt-3 section-lead">Estrutura de repositório, semantic versioning, terratest, checkov, infracost, renovate. Como entregamos infra como produto interno.</p><div class="d-flex flex-wrap gap-3 mt-3 text-muted small"><span><i class="bi bi-clock me-1"></i>10 min de leitura</span><span><i class="bi bi-calendar me-1"></i>15/10/2026</span><span><i class="bi bi-person me-1"></i>IT Cloud Solutions</span></div></div></header>
+<header class="page-hero"><div class="container"><nav aria-label="Breadcrumb" class="mb-3"><ol class="breadcrumb bg-transparent p-0 mb-2"><li class="breadcrumb-item"><a href="/">Início</a></li><li class="breadcrumb-item"><a href="/blog/">Blog</a></li><li class="breadcrumb-item"><a href="/blog/#infra">Infra, DevOps & Plataformas</a></li><li class="breadcrumb-item active" aria-current="page">Módulos Terraform</li></ol></nav><span class="eyebrow text-info">Infra, DevOps & Plataformas · IaC</span><h1 class="mt-3">Módulos Terraform reutilizáveis: versionamento, testagem e registry privado</h1><p class="mt-3 section-lead">Estrutura de repositório, semantic versioning, terratest, checkov, infracost, renovate. Como entregamos infra como produto interno.</p><div class="d-flex flex-wrap gap-3 mt-3 text-muted small"><span><i class="bi bi-clock me-1"></i>10 min de leitura</span><span><i class="bi bi-calendar me-1"></i>15/10/2026</span><span><i class="bi bi-person me-1"></i>IT Cloud Solutions</span></div></div></header>
 
 <article class="section"><div class="container"><div class="row g-5"><div class="col-lg-8">
 <div class="ratio ratio-16x9 mb-4 rounded-3 overflow-hidden"><img src="img/blog/terraform-modules.jpg" alt="Estrutura de módulos Terraform" class="img-fluid object-fit-cover" style="object-fit:cover;"></div>
@@ -106,22 +106,22 @@ module "vnet" {
 
 <hr class="my-5">
 <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-info">IaC</span><span class="badge text-bg-light text-dark">Terraform</span><span class="badge text-bg-light text-dark">Modules</span><span class="badge text-bg-light text-dark">Registry</span><span class="badge text-bg-light text-dark">Semantic Versioning</span><span class="badge text-bg-light text-dark">Terratest</span><span class="badge text-bg-light text-dark">Checkov</span><span class="badge text-bg-light text-dark">Infracost</span></div>
-<div class="d-flex gap-3"><a href="blog.html" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Voltar ao Blog</a><a href="contato.html?servico=IaC" class="btn btn-info"><i class="bi bi-envelope me-2"></i>Estruturar minha fábrica de módulos</a></div>
+<div class="d-flex gap-3"><a href="/blog/" class="btn btn-outline-primary"><i class="bi bi-arrow-left me-2"></i>Voltar ao Blog</a><a href="contato.html?servico=IaC" class="btn btn-info"><i class="bi bi-envelope me-2"></i>Estruturar minha fábrica de módulos</a></div>
 </div>
 
 <aside class="col-lg-4"><div class="modern-card p-4 sticky-top" style="top: 100px;"><h4 class="mb-3">Autor</h4><div class="d-flex align-items-center gap-3 mb-3"><div class="bg-info rounded-circle d-flex align-items-center justify-content-center" style="width:56px;height:56px"><i class="bi bi-building text-white fs-3"></i></div><div><strong>IT Cloud Solutions</strong><br><small class="text-muted">Especialistas IaC & Terraform</small></div></div>
 <hr>
 <h5 class="mb-3">Artigos Relacionados</h5><ul class="list-unstyled"><li class="mb-2"><a href="blog-k8s-gitops.html" class="text-decoration-none">GitOps com ArgoCD</a></li><li class="mb-2"><a href="blog-observability.html" class="text-decoration-none">Observabilidade ponta a ponta</a></li><li class="mb-2"><a href="blog-devsecops.html" class="text-decoration-none">Shift-left security</a></li><li class="mb-2"><a href="case-terraform-modules.html" class="text-decoration-none">Case: Fábrica de módulos Terraform</a></li></ul>
 <hr>
-<div class="d-grid gap-2"><a href="contato.html?servico=IaC" class="btn btn-info"><i class="bi bi-envelope me-2"></i>Falar com Especialista Terraform</a><a href="solucoes.html" class="btn btn-outline-secondary"><i class="bi bi-braces me-2"></i>Ver PaaS & DevOps</a></div></div></aside></div></div></article>
+<div class="d-grid gap-2"><a href="contato.html?servico=IaC" class="btn btn-info"><i class="bi bi-envelope me-2"></i>Falar com Especialista Terraform</a><a href="/solucoes/" class="btn btn-outline-secondary"><i class="bi bi-braces me-2"></i>Ver PaaS & DevOps</a></div></div></aside></div></div></article>
 
-<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Cloud sem surpresa na fatura.</h2><p class="section-lead mx-auto mt-3">Governança, FinOps, backup, monitoramento e segurança para manter seu ambiente alinhado ao negócio.</p><a href="contato.html" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com Especialista</a></div></section>
+<section class="section dark-band"><div class="container text-center"><h2 class="section-title">Cloud sem surpresa na fatura.</h2><p class="section-lead mx-auto mt-3">Governança, FinOps, backup, monitoramento e segurança para manter seu ambiente alinhado ao negócio.</p><a href="/contato/" class="btn btn-primary btn-lg mt-3"><i class="bi bi-envelope me-2"></i>Falar com Especialista</a></div></section>
 </main>
 <footer class="site-footer">
     <div class="container footer-main">
         <div class="footer-grid">
             <section aria-label="Identificação e contato">
-                <a class="footer-logo" href="index.html"><img src="img/logo.png" alt="IT Cloud Solutions"></a>
+                <a class="footer-logo" href="/"><img src="img/logo.png" alt="IT Cloud Solutions"></a>
                 <ul class="footer-contact">
                     <li><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><span>R. Trinta e Quatro, Bloco 50, Prédio Moa, Cuiabá - MT</span></li>
                     <li><i class="bi bi-telephone-fill" aria-hidden="true"></i><a href="tel:+5518996529725">(18) 99652-9725</a></li>
@@ -132,24 +132,24 @@ module "vnet" {
             <section>
                 <h2 class="footer-heading">EXPLORAR</h2>
                 <ul class="footer-links">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="cloud-providers.html">Cloud</a></li>
-                    <li><a href="solucoes.html">Soluções</a></li>
-                    <li><a href="email-hosting.html">E-mail e Hosting</a></li>
-                    <li><a href="cases.html">Cases</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                    <li><a href="helpdesk.html">Help Desk</a></li>
-                    <li><a href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/cloud-providers/">Cloud</a></li>
+                    <li><a href="/solucoes/">Soluções</a></li>
+                    <li><a href="/email-hosting/">E-mail e Hosting</a></li>
+                    <li><a href="/cases/">Cases</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/contato/">Contato</a></li>
+                    <li><a href="/helpdesk/">Help Desk</a></li>
+                    <li><a href="/trabalhe-conosco/">Trabalhe Conosco</a></li>
                 </ul>
             </section>
             <section>
                 <h2 class="footer-heading">SUPORTE</h2>
                 <ul class="footer-links">
-                    <li><a href="contato.html">Fale Conosco</a></li>
-                    <li><a href="contato.html#faqAccordion">FAQ</a></li>
-                    <li><a href="helpdesk.html">Ajuda</a></li>
-                    <li><a href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                    <li><a href="/contato/">Fale Conosco</a></li>
+                    <li><a href="/contato/#faqAccordion">FAQ</a></li>
+                    <li><a href="/helpdesk/">Ajuda</a></li>
+                    <li><a href="/trabalhe-conosco/">Trabalhe Conosco</a></li>
                 </ul>
             </section>
             <section>
