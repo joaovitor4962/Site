@@ -641,3 +641,11 @@ body.page-contato .page-hero > .container {
     position: relative;
     z-index: 1;
 }
+
+
+/* Mantém o tratamento visual já aprovado para a página Cases */
+body.page-cases .section-bg::before {
+    background: linear-gradient(90deg, rgba(6,16,31,.8) 0%, rgba(6,16,31,.45) 45%, rgba(6,16,31,.1) 100%), var(--hero-image) center / cover no-repeat;
+    animation: tech-bubbles-rise 9s ease-in-out infinite;
+    background-attachment: scroll;
+}
